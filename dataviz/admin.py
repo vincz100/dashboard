@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Statistiques
+# ne pas oublier d'importer le modèle !
 
-# Register your models here.
+admin.site.register(Statistiques)

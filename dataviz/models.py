@@ -34,6 +34,6 @@ class Statistiques(models.Model):
         nous permettra de reconnaître facilement les différents objets que 
         nous traiterons plus tard dans l'administration
         """
-        return self.codgeo
+        return self.libgeo
 
 
