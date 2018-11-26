@@ -1,2 +1,19 @@
-<h1>Bienvenue sur mon blog</h1>
-<p>La date actuelle est : {{ date }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>django-pygal</title>
+</head>
+<body>
+  <h1>Bienvenue sur mon blog</h1> 
+  {{ line_chart|safe  }}
+</body>
+</html>
+
+{% comment %} <h1>Bienvenue sur mon blog</h1>
+
+{% for el in data %}
+    <p>La date actuelle est : {{ data.p15_pop }}</p>
+{% endfor %} {% endcomment %}
