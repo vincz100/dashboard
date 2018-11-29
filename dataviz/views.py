@@ -1,7 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.views.generic import TemplateView, View
 from django.template.response import TemplateResponse
 from django.http import HttpResponse, JsonResponse
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from datetime import datetime
 import pygal
@@ -45,6 +49,7 @@ def accueil(request):
 
 # page index avec la méthode HttpResponse(text) qui prend comme paramètre une chaîne de caractères et renvoie le HTML au navigateur. 
 
+User = get_user_model()
 class HomeView(View):
 	def get(self, request, *args, **kwargs):
 		return render(request, 'home.html', {})
@@ -52,6 +57,14 @@ class HomeView(View):
 def get_data(request, *args, **kwargs):
 	data = (Statistiques.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop").filter(codgeo='39538'))[0]
 	return JsonResponse(data)
+
+class ChartData(APIView):
+	authentication_classes = []
+	permission_classes = []
+	
+	def get(self, request, format=None):
+		data = (Statistiques.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop").filter(codgeo='39538'))[0]
+		return Response(data)
 
 def index2(request):
     return HttpResponse("""
