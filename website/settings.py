@@ -56,7 +56,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # Cette ligne ajoute le dossier templates/ à la racine du projet
-            os.path.join(PROJECT_DIR,'templates/'),
+            os.path.join(PROJECT_DIR,''),
             os.path.join(PROJECT_DIR,'dataviz/'),
         ],
         'APP_DIRS': True,

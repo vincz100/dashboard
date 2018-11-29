@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>
-  <title>django-pygal</title>
-</head>
-<body>
-  <h1>Bienvenue sur mon blog</h1>
-  {{ line_chart|safe  }}
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% comment %} <script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script> {% endcomment %}
+  
+    <title>dataviz</title>
+
+    {% include 'templates/css.html' %}
+    {% include 'templates/bootstrap_defaults.html' %}
+  </head>
+
+  <body>
+    {% comment %} <h1 id='test'>Bienvenue sur mon blog</h1> {% endcomment %}
+    {% comment %} {{ line_chart|safe  }} {% endcomment %}
+    <div class='container'>
+      {% block content %}
+      {% endblock content %}
+    </div>
+    {% include 'templates/js.html' %}
+  
+    <script>
+    $(document).ready(function(){ /*fait appel à la fonction dès que la page html ets chargé */
+      /*{% block jquery %}{% endblock %}*/
+      var endpoint = 'api/data/'
+        $.ajax({
+          method:"GET",
+          url: endpoint,
+          dataType: 'json',
+
+          success: function(data){
+            console.log(data)
+          },
+          error: function(error_data){
+            console.log("error")
+            console.log(error_data)
+          }
+        })
+    })
+    </script>
+  </body>
 </html>
-
-{% comment %} <h1>Bienvenue sur mon blog</h1>
-
-{% for el in data %}
-    <p>La date actuelle est : {{ data.p15_pop }}</p>
-{% endfor %} {% endcomment %}

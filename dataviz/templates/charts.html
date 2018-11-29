@@ -1,0 +1,32 @@
+{% extends 'dataviz/templates/home.html' %}
+
+<script>
+{% block jquery %}
+var endpoint = 'api/data/'
+
+$.ajax({
+	method:"GET",
+	url: endpoint,
+	dataType: 'json',
+
+	success: function(data){
+		console.log("coucou c'est nous")
+	},
+	error: function(error_data){
+		console.log("error")
+		console.log(error_data)
+	}
+})
+{% endblock %}
+
+</script>
+
+{% block content %}
+
+<div class='row'>
+  <div class='col-sm-12' url-endpoint='{% url "api-data"%}'>
+    <h1>Hello world</h1>
+  </div>
+</div>
+
+{% endblock content %}
