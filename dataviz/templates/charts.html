@@ -1,4 +1,4 @@
-{% extends 'dataviz/templates/home.html' %}
+{% extends 'home.html' %}
 
 <script>
 {% block jquery %}
@@ -7,7 +7,7 @@ var endpoint = 'api/data/'
 $.ajax({
 	method:"GET",
 	url: endpoint,
-	dataType: 'json',
+	/*dataType: 'json',*/
 
 	success: function(data){
 		console.log("coucou c'est nous")
@@ -17,8 +17,8 @@ $.ajax({
 		console.log(error_data)
 	}
 })
-{% endblock %}
 
+{% endblock %}
 </script>
 
 {% block content %}
