@@ -52,7 +52,7 @@ def accueil(request):
 User = get_user_model()
 class HomeView(View):
 	def get(self, request, *args, **kwargs):
-		return render(request, 'home.html', {})
+		return render(request, 'charts.html', {})
 
 def get_data(request, *args, **kwargs):
 	data = (Statistiques.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop").filter(codgeo='39538'))[0]
