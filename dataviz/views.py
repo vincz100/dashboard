@@ -63,8 +63,7 @@ class ChartData(APIView):
 	permission_classes = []
 
 	def get(self, request, format=None):
-		qs_count = User.objects.all().count()
-		labels = ["Users","d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop"]
+		labels = ["1968", "1975", "1982", "1990", "1999", "2010", "2015"]
 		filtre = Statistiques.objects.values_list("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop").filter(codgeo='39518')
 		default_items = [el for el in filtre[0]]
 		data = {
