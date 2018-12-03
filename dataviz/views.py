@@ -61,9 +61,16 @@ def get_data(request, *args, **kwargs):
 class ChartData(APIView):
 	authentication_classes = []
 	permission_classes = []
-	
+
 	def get(self, request, format=None):
-		data = (Statistiques.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop").filter(codgeo='39538'))[0]
+		qs_count = User.objects.all().count()
+		labels = ["Users","d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop"]
+		filtre = Statistiques.objects.values_list("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop").filter(codgeo='39518')
+		default_items = [el for el in filtre[0]]
+		data = {
+			"labels": labels,
+			"default": default_items,
+		}
 		return Response(data)
 
 def index2(request):
@@ -75,4 +82,3 @@ def index3(request):
     return HttpResponse("""
         <h1>ECO EMPLOI<h1>
         """)
-

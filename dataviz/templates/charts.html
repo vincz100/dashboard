@@ -2,15 +2,19 @@
 
 <script>
 {% block jquery %}
-var endpoint = 'api/data/'
+var endpoint = 'api/chart/data/'
+var defaultData = []
+var labels = [];
 
 $.ajax({
 	method:"GET",
 	url: endpoint,
-	/*dataType: 'json',*/
-
 	success: function(data){
-		console.log(data)
+        labels = data.labels
+        defaultData = data.default
+        setChart()
+	    console.log(data)
+        console.log(labels)
 	},
 	error: function(error_data){
 		console.log("error")
@@ -18,14 +22,27 @@ $.ajax({
 	}
 })
 
-var ctx = document.getElementById("myChart");
+function setChart(){
+    var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: defaultData,
+                    }]
+                }
+            })
+}
+/* var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
           type: 'bar',
           data: {
-              labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+              labels: labels,
               datasets: [{
                   label: '# of Votes',
-                  data: [12, 19, 3, 5, 2, 3],
+                  data: defaultData,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
                       'rgba(54, 162, 235, 0.2)',
@@ -54,7 +71,7 @@ var ctx = document.getElementById("myChart");
                   }]
               }
           }
-      });
+      });*/
 
 {% endblock %}
 </script>
@@ -64,7 +81,7 @@ var ctx = document.getElementById("myChart");
 <div class='row'>
   <div class='col-sm-12' url-endpoint='{% url "api-data"%}'>
     <h1>Hello world</h1>
-		<canvas id="myChart" width="2000" height="2000"></canvas>
+		<canvas id="myChart" width="200" height="200"></canvas>
   </div>
 </div>
 
