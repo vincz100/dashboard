@@ -132,7 +132,8 @@ function setChart(){
 
 <div class='row'>
     <div class='col-sm-12' url-endpoint='{% url "api-data"%}'>
-        <h1>Analyses socio-demo</h1>
+        <h1> POPULATION </h1>
+        <h3>Commune de {{ libgeo }} ({{ codgeo }})</h3>
     </div>
     <div class='col-sm-6'>
 		<canvas id="myChart" width="400" height="400"></canvas>
@@ -146,5 +147,6 @@ function setChart(){
     <div class='col-sm-6'>
 		<canvas id="myChart4" width="400" height="400"></canvas>
     </div>
+</div>
 
 {% endblock content %}

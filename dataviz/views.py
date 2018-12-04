@@ -17,15 +17,16 @@ import pygal
 # local Django
 from dataviz.models import Statistiques
 
-# page "accueil" avec la fonction render qui prend 3 arguments en paramètre : 
-# la requête HTTP initiale
-# le template home.html 
-# un dictionnaire reprenant les variables qui seront accessibles dans le template
+filtre = '39538'
 
-#
-class SocioDemo(View):
+class Population(View):
 	def get(self, request, *args, **kwargs):
-		return render(request, 'charts.html', {})
+		stats = Statistiques.objects.get(codgeo=filtre)
+		data = {
+			"libgeo": stats.libgeo,
+			"codgeo" : stats.codgeo
+		}
+		return render(request, 'charts.html', data)
 
 def get_data(request, *args, **kwargs):
 	data = (Statistiques.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop")[0])
@@ -36,11 +37,13 @@ class ChartData(APIView):
 	permission_classes = []
 	def get(self, request, format=None):
 		labels = ["1968", "1975", "1982", "1990", "1999", "2010", "2015"]
-		filtre = Statistiques.objects.values_list("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop").filter(codgeo='39518')
-		default_items = [el for el in filtre[0]]
+		stats = Statistiques.objects.get(codgeo=filtre)
+		territory_name = [stats.libgeo]
+		population =[stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop]
 		data = {
+			"territory": territory_name,
 			"labels": labels,
-			"default": default_items,
+			"default": population
 		}
 		return Response(data)
 
