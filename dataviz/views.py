@@ -17,7 +17,7 @@ import pygal
 # local Django
 from dataviz.models import Statistiques
 
-filtre = '39538'
+filtre = '39063'
 
 class Population(View):
 	def get(self, request, *args, **kwargs):

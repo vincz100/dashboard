@@ -1,5 +1,15 @@
 from django.db import models
 from django.utils import timezone
+from djgeojson.fields import PointField, PolygonField
+
+class MushroomSpot(models.Model):
+    title = models.CharField(max_length=256, null=True)
+    description = models.TextField(null=True)
+    picture = models.ImageField(null=True)
+    geom = PolygonField()
+
+    def __str__(self):
+        return self.title
 
 class Statistiques(models.Model):
     codgeo = models.CharField(max_length=5)

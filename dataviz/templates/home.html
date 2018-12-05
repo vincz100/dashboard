@@ -1,3 +1,4 @@
+{% load leaflet_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,15 +8,20 @@
   
     <title>dataviz</title>
 
-    {% include 'templates/css.html' %}
-    {% include 'templates/bootstrap_defaults.html' %}
+    {% leaflet_js %}
+    {% leaflet_css %}
+    {% include 'css.html' %}
+    {% include 'bootstrap_defaults.html' %}
   </head>
   <body>
     <div class='container'>
     {% block content %}
     {% endblock content %}
+    {% block map %}
+    {% endblock map %}  
     </div>
-    {% include 'templates/js.html' %}
+    {% include 'js.html' %}
+    
     <script>
     $(document).ready(function(){ /*fait appel à la fonction dès que la page html est chargé */
       
