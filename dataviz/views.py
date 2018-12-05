@@ -16,6 +16,7 @@ import pygal
 
 # local Django
 from dataviz.models import Statistiques
+from dataviz.forms import InitForm
 
 filtre = '39538'
 
@@ -48,9 +49,10 @@ class ChartData(APIView):
 		return Response(data)
 
 def accueil(request):
-	return HttpResponse("""
-        <h1>ACCUEIL</h1>
-        """)
+	form = InitForm(request.POST or None)
+	if form.is_valid():
+		codgeo = form.cleaned_data['codgeo']
+	return render(request, 'accueil.html', locals())
 
 def index2(request):
     return HttpResponse("""
