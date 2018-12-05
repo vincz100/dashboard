@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -59,8 +59,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # Cette ligne ajoute le dossier templates/ à la racine du projet
-            os.path.join(PROJECT_DIR,''),
-            os.path.join(PROJECT_DIR,'dataviz/'),
+            os.path.join(PROJECT_DIR,'templates'),
+            # os.path.join(PROJECT_DIR,'dataviz/'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
