@@ -2,7 +2,7 @@
 
 # Django imports
 from django.contrib.auth import get_user_model
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, View
 from django.template.response import TemplateResponse
 from django.http import HttpResponse, JsonResponse
@@ -15,13 +15,30 @@ from datetime import datetime
 import pygal
 
 # local Django
-from dataviz.models import Statistiques
-from dataviz.forms import InitForm
+from .models import Statistiques
+from .forms import HomeForm
 
-filtre = '39538'
+filtre = '39192'
+
+class HomeView(TemplateView):
+	template_name = "accueil.html"
+
+	def get(self, request):
+		form = HomeForm()
+		return render(request, self.template_name, {"form":form})
+	
+	def post(self, request):
+		form = HomeForm(request.POST or None)
+		if form.is_valid():
+			text = form.cleaned_data['codgeo']
+		return redirect('index3', text)
 
 class Population(View):
+	
+	# filtre = get.text
 	def get(self, request, *args, **kwargs):
+
+		# codgeo = request.session['codgeo']
 		stats = Statistiques.objects.get(codgeo=filtre)
 		data = {
 			"libgeo": stats.libgeo,
@@ -37,29 +54,21 @@ class ChartData(APIView):
 	authentication_classes = []
 	permission_classes = []
 	def get(self, request, format=None):
-		labels = ["1968", "1975", "1982", "1990", "1999", "2010", "2015"]
+		codgeo = request.session.get('codgeo')
 		stats = Statistiques.objects.get(codgeo=filtre)
-		territory_name = [stats.libgeo]
-		population =[stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop]
 		data = {
-			"territory": territory_name,
-			"labels": labels,
-			"default": population
+			"territory": [stats.libgeo],
+			"labels": ["1968", "1975", "1982", "1990", "1999", "2010", "2015"],
+			"default": [stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop]
 		}
 		return Response(data)
-
-def accueil(request):
-	form = InitForm(request.POST or None)
-	if form.is_valid():
-		codgeo = form.cleaned_data['codgeo']
-	return render(request, 'accueil.html', locals())
 
 def index2(request):
     return HttpResponse("""
         <h1>SOCIO DEMO</h1>
         """)
 
-def index3(request):
+def index3(request, text):
     return HttpResponse("""
         <h1>ECO EMPLOI<h1>
         """)
