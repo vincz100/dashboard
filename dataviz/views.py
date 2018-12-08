@@ -25,13 +25,18 @@ class HomeView(TemplateView):
 
 	def get(self, request):
 		form = HomeForm()
-		return render(request, self.template_name, {"form":form})
+		return render(request, self.template_name, {"form": form})
 	
 	def post(self, request):
 		form = HomeForm(request.POST or None)
 		if form.is_valid():
 			text = form.cleaned_data['codgeo']
-		return redirect('index3', text)
+		else:
+			print('ERROR FORM INVALID')
+
+		args = {"form": form, "text": text}
+		print(text)
+		return render(request, self.template_name, args)
 
 class Population(View):
 	
