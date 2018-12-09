@@ -18,7 +18,7 @@ import pygal
 from .models import Statistiques
 from .forms import HomeForm
 
-filtre = '39192'
+# filtre = '39192'
 
 class HomeView(TemplateView):
 	template_name = "accueil.html"
@@ -35,15 +35,21 @@ class HomeView(TemplateView):
 			print('ERROR FORM INVALID')
 
 		args = {"form": form, "text": text}
-		print(text)
-		return render(request, self.template_name, args)
+		filtre = {"text": text}
+		request.session['filtre'] = filtre
+		# return redirect("socio_demo")
+		# return render(request, self.template_name, args)
+
 
 class Population(View):
-	
+
 	# filtre = get.text
 	def get(self, request, *args, **kwargs):
-
+		# text = request.GET.get('text')
 		# codgeo = request.session['codgeo']
+		# filtre = request.session.get('text')
+		filtre = request.session.get('filtre')
+		filtre = filtre["text"]
 		stats = Statistiques.objects.get(codgeo=filtre)
 		data = {
 			"libgeo": stats.libgeo,
@@ -58,8 +64,10 @@ def get_data(request, *args, **kwargs):
 class ChartData(APIView):
 	authentication_classes = []
 	permission_classes = []
+
 	def get(self, request, format=None):
-		codgeo = request.session.get('codgeo')
+		filtre = request.session.get('filtre')
+		filtre = filtre["text"]
 		stats = Statistiques.objects.get(codgeo=filtre)
 		data = {
 			"territory": [stats.libgeo],
@@ -68,12 +76,9 @@ class ChartData(APIView):
 		}
 		return Response(data)
 
-def index2(request):
-    return HttpResponse("""
-        <h1>SOCIO DEMO</h1>
-        """)
-
-def index3(request, text):
-    return HttpResponse("""
-        <h1>ECO EMPLOI<h1>
-        """)
+def index3(request):
+	filtre = request.session.get('filtre')
+	filtre = filtre["text"]
+	return HttpResponse("""
+		<h1>ECO EMPLOI</h1>
+		""")
