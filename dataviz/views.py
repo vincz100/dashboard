@@ -18,7 +18,7 @@ import pygal
 from .models import Statistiques
 from .forms import HomeForm
 
-# filtre = '39192'
+filtre = '39192'
 
 class HomeView(TemplateView):
 	template_name = "accueil.html"
@@ -31,15 +31,13 @@ class HomeView(TemplateView):
 		form = HomeForm(request.POST or None)
 		if form.is_valid():
 			text = form.cleaned_data['codgeo']
+			args = {"form": form, "text": text}
+			filtre = {"text": text}
+			request.session["filtre"] = filtre
+			return redirect('socio-demo')
 		else:
 			print('ERROR FORM INVALID')
-
-		args = {"form": form, "text": text}
-		filtre = {"text": text}
-		request.session['filtre'] = filtre
-		# return redirect("socio_demo")
-		# return render(request, self.template_name, args)
-
+		return render(request, self.template_name, args)
 
 class Population(View):
 

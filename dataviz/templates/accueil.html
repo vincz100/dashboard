@@ -4,8 +4,7 @@
     {% if envoi %}Votre message a bien été envoyé !{% endif %}
         <div class="container">
             <h1>Home</h1>
-            <form action="{% url "socio-demo" %} form method="post">
-            {% comment %} <form action="{% url "socio-demo" %}" method="post"> {% endcomment %}
+            <form form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" class="btn btn-primary" value="Submit" />
