@@ -21,7 +21,7 @@ from .forms import HomeForm
 filtre = '39192'
 
 class HomeView(TemplateView):
-	template_name = "accueil.html"
+	template_name = "home.html"
 
 	def get(self, request):
 		form = HomeForm()
@@ -41,11 +41,7 @@ class HomeView(TemplateView):
 
 class Population(View):
 
-	# filtre = get.text
 	def get(self, request, *args, **kwargs):
-		# text = request.GET.get('text')
-		# codgeo = request.session['codgeo']
-		# filtre = request.session.get('text')
 		filtre = request.session.get('filtre')
 		filtre = filtre["text"]
 		stats = Statistiques.objects.get(codgeo=filtre)
