@@ -18,7 +18,6 @@ import pygal
 from .models import Statistiques
 from .forms import HomeForm
 
-filtre = '39192'
 
 class HomeView(TemplateView):
 	template_name = "home.html"
