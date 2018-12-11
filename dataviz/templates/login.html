@@ -1,0 +1,15 @@
+{% extends 'bootstrap_defaults.html' %}
+
+{% block content %}
+    {% if envoi %}Votre message a bien été envoyé !{% endif %}
+        <div class="container">
+            <h1>Home</h1>
+            <form form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-primary" value="Submit" />
+            <h2>{{text}}</h2>
+            </form>
+        </div>
+
+{% endblock content %}

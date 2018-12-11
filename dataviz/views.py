@@ -18,9 +18,16 @@ import pygal
 from .models import Statistiques
 from .forms import HomeForm
 
+def home(request):
+	return render(request, 'home.html', {})
 
+def board(request):
+	return HttpResponse("""
+		<h1>BOARD</h1>
+		""")
+		
 class HomeView(TemplateView):
-	template_name = "home.html"
+	template_name = "login.html"
 
 	def get(self, request):
 		form = HomeForm()
@@ -68,10 +75,3 @@ class ChartData(APIView):
 			"default": [stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop]
 		}
 		return Response(data)
-
-def index3(request):
-	filtre = request.session.get('filtre')
-	filtre = filtre["text"]
-	return HttpResponse("""
-		<h1>ECO EMPLOI</h1>
-		""")
