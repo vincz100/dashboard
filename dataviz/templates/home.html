@@ -4,7 +4,9 @@
 
 <div class="button">
     <h1>PAGE PRODUIT</h1>
-    <button type="button" class="btn btn-primary btn-lg">CONNECTEZ VOUS !</button>
+    <a href="{% url 'login' %}">
+        <button type="button" class="btn btn-primary btn-lg">CONNECTEZ VOUS !</button>
+    </a>
 </div>
 
 {% endblock content %}
