@@ -33,8 +33,8 @@ class LoginView(TemplateView):
 		if form.is_valid():
 			username = form.cleaned_data["username"]
 			password = form.cleaned_data["password"]
-			user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
-			if user:
+			user = authenticate(username=username, password=password)  # verif de données correctes avec la méthode authenticate(request, username=None, password=None). Renvoi soit un utilisateur authentifié, soit None
+			if user is not None :
 				login(request, user)
 				return redirect('choice')
 			else:

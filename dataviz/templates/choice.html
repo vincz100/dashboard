@@ -3,7 +3,7 @@
 {% block content %}
     {% if envoi %}Votre message a bien été envoyé !{% endif %}
         <div class="container">
-            <h1>Home</h1>
+            <h1>Choisissez votre territoire</h1>
             <form form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
