@@ -1,6 +1,6 @@
-# Project Title
+## DATAVIEWER
 
-Outil de visualisation de donnée statistique. 
+Outil de visualisation de données statistiques basé sur Django 2.1.4, ChartJS et Bootstrap 4.1.3. 
 
 ## Getting Started
 

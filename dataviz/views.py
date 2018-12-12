@@ -1,7 +1,7 @@
 #Standard library imports
 
 # Django imports
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate, login
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, View
 from django.template.response import TemplateResponse
@@ -16,18 +16,35 @@ import pygal
 
 # local Django
 from .models import Statistiques
-from .forms import HomeForm
+from .forms import HomeForm, LoginForm
 
 def home(request):
 	return render(request, 'home.html', {})
 
-def board(request):
-	return HttpResponse("""
-		<h1>BOARD</h1>
-		""")
+class LoginView(TemplateView):
+	template_name = "login.html"
+
+	def get(self, request):
+		form = LoginForm()
+		return render(request, self.template_name, {"form": form})
+	
+	def post(self, request):
+		form = LoginForm(request.POST or None)
+		if form.is_valid():
+			username = form.cleaned_data["username"]
+			password = form.cleaned_data["password"]
+			user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
+			if user:
+				login(request, user)
+				return redirect('choice')
+			else:
+				error = True
+		else:
+			form: LoginForm()
+		return render(request, self.template_name, locals())
 		
 class HomeView(TemplateView):
-	template_name = "login.html"
+	template_name = "choice.html"
 
 	def get(self, request):
 		form = HomeForm()
@@ -44,6 +61,11 @@ class HomeView(TemplateView):
 		else:
 			print('ERROR FORM INVALID')
 		return render(request, self.template_name, args)
+
+def board(request):
+	return HttpResponse("""
+		<h1>BOARD</h1>
+		""")
 
 class Population(View):
 
