@@ -23,6 +23,18 @@ class Statistiques(models.Model):
     varpop_9099 = models.FloatField()
     varpop_9910 = models.FloatField()
     varpop_1015 = models.FloatField()
+    txevoansoldnat_6875 = models.FloatField(null=True)
+    txevoansoldnat_7582 = models.FloatField(null=True)
+    txevoansoldnat_8290 = models.FloatField(null=True)
+    txevoansoldnat_9099 = models.FloatField(null=True)
+    txevoansoldnat_9910 = models.FloatField(null=True)
+    txevoansoldnat_1015 = models.FloatField(null=True)
+    txevoansoldmig_6875 = models.FloatField(null=True)
+    txevoansoldmig_7582 = models.FloatField(null=True)
+    txevoansoldmig_8290 = models.FloatField(null=True)
+    txevoansoldmig_9099 = models.FloatField(null=True)
+    txevoansoldmig_9910 = models.FloatField(null=True)
+    txevoansoldmig_1015 = models.FloatField(null=True) 
 
     class Meta:
         verbose_name="statistiques communale"

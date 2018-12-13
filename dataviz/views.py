@@ -80,7 +80,7 @@ class Population(View):
 		return render(request, 'charts.html', data)
 
 def get_data(request, *args, **kwargs):
-	data = (Statistiques.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop")[0])
+	data = (Statistiques.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop", "txevoansoldmig_6875", "txevoansoldmig_7582", "txevoansoldmig_8290", "txevoansoldmig_9099", "txevoansoldmig_9910", "txevoansoldmig_1015", "txevoansoldnat_6875", "txevoansoldnat_7582", "txevoansoldnat_8290", "txevoansoldnat_9099", "txevoansoldnat_9910", "txevoansoldnat_1015" )[0])
 	return JsonResponse(data)
 
 class ChartData(APIView):
@@ -94,6 +94,8 @@ class ChartData(APIView):
 		data = {
 			"territory": [stats.libgeo],
 			"labels": ["1968", "1975", "1982", "1990", "1999", "2010", "2015"],
-			"default": [stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop]
+			"default": [stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop],
+			"soldmig":[stats.txevoansoldmig_6875, stats.txevoansoldmig_7582, stats.txevoansoldmig_8290, stats.txevoansoldmig_9099, stats.txevoansoldmig_9910, stats.txevoansoldmig_1015],
+			"soldnat":[stats.txevoansoldnat_6875, stats.txevoansoldnat_7582, stats.txevoansoldnat_8290, stats.txevoansoldnat_9099, stats.txevoansoldnat_9910, stats.txevoansoldnat_1015],
 		}
 		return Response(data)
