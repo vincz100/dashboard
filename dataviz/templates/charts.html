@@ -12,6 +12,8 @@ $.ajax({
 	success: function(data){
         labels = data.labels
         defaultData = data.default
+        soldemigratoire = data.soldmig
+        soldenaturel = data.soldnat
         setChart()
 	    console.log(data)
         console.log(labels)
@@ -123,6 +125,46 @@ function setChart(){
                 }]
             }
         })
+    var ctx5 = document.getElementById("myChart5");
+        var myChart = new Chart(ctx5, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Solde migratoire",
+                    data: soldemigratoire,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ]
+                }, {
+                    label: "Solde naturel",
+                    data: soldenaturel, 
+                    backgroundColor: [
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ]          
+                }],
+                options: {
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                        }]
+                    }
+                } 
+            }      
+        })
     }
 
 {% endblock %}
@@ -130,7 +172,7 @@ function setChart(){
 
 {% block content %}
 
-<div class='row'>
+<div class='row' >
     <div class='col-sm-12' url-endpoint='{% url "api-data"%}'>
         <h1> POPULATION </h1>
         <h3>Commune de {{ libgeo }} ({{ codgeo }})</h3>
@@ -146,6 +188,9 @@ function setChart(){
     </div>
     <div class='col-sm-6'>
 		<canvas id="myChart4" width="400" height="400"></canvas>
+    </div>
+    <div class='col-sm-12'>
+		<canvas id="myChart5" width="400" height="400"></canvas>
     </div>
 </div>
 
