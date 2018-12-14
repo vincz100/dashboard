@@ -128,6 +128,16 @@ function setChart(){
     var ctx5 = document.getElementById("myChart5");
         var myChart = new Chart(ctx5, {
             type: 'bar',
+            options: {
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                        }]
+                    }
+                },
             data: {
                 labels: labels,
                 datasets: [{
@@ -145,24 +155,14 @@ function setChart(){
                     label: "Solde naturel",
                     data: soldenaturel, 
                     backgroundColor: [
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(153, 102, 255, 1)'
                     ]          
-                }],
-                options: {
-                    scales: {
-                        xAxes: [{
-                            stacked: true,
-                        }],
-                        yAxes: [{
-                            stacked: true,
-                        }]
-                    }
-                } 
+                }], 
             }      
         })
     }
@@ -177,19 +177,19 @@ function setChart(){
         <h1> POPULATION </h1>
         <h3>Commune de {{ libgeo }} ({{ codgeo }})</h3>
     </div>
-    <div class='col-sm-6'>
+    <div class='col-sm-4'>
 		<canvas id="myChart" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-6'>
+    <div class='col-sm-4'>
 		<canvas id="myChart2" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-6'>
+    <div class='col-sm-4'>
 		<canvas id="myChart3" width="400" height="400"></canvas>
     </div>
     <div class='col-sm-6'>
 		<canvas id="myChart4" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-12'>
+    <div class='col-sm-6'>
 		<canvas id="myChart5" width="400" height="400"></canvas>
     </div>
 </div>
