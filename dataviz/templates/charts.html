@@ -58,6 +58,7 @@ function setChart(){
     })
 
     var ctx2 = document.getElementById("myChart2");
+    /*Chart.defaults.global.gridLines.offsetGridLines = false;*/
         var myChart = new Chart(ctx2, {
             type: 'bar',
             data: {
@@ -73,23 +74,21 @@ function setChart(){
                 title: {
                     display: true,
                     text: "Evolution de la population",
+                },
+                scaleLabel: {
+                    
+                },
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            offsetGridLines: true,
+                            drawTicks: false,
+                            drawOnChartArea: false,
+
+                        }
+                    }],
                 }
             },
-            scales: {
-                xAxes: [{
-                    type: "time",
-                    /*time: {
-                        parser: 'YYYY',
-                        unit: 'year',
-                        displayFormats: {
-                            year: 'YYYY',
-                        },
-                    },*/
-                }],
-            },
-            /*ticks: {
-                  source: 'data',
-               },*/
         })
 
     var ctx3 = document.getElementById("myChart3");
@@ -161,6 +160,49 @@ function setChart(){
             data: {
                 labels: labels,
                 datasets: [{
+                    label: "Evolution population",
+                    type: 'line',
+                    data: defaultData,
+                    backgroundColor: 'rgba(249, 213, 3, 0.2)',
+                    borderColor: 'rgba(249, 213, 3, 1)',
+                }, {
+                    label: "Solde migratoire",
+                    type: 'bar',
+                    data: soldemigratoire,
+                    borderWidth: 1,
+                    borderColor: 'rgba(249, 213, 3, 1)',
+                    backgroundColor: 'rgba(249, 213, 3, 1)',
+                }, {
+                    label: "Solde naturel",
+                    data: soldenaturel, 
+                    type: "bar",
+                    borderWidth: 1,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                }],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Dynamique démographique'
+                },
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                    }]
+                }
+            },      
+        })
+    }
+    /*var ctx5 = document.getElementById("myChart5");
+        var myChart = new Chart(ctx5, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
                     label: "Solde migratoire",
                     data: soldemigratoire,
                     borderWidth: 1,
@@ -189,7 +231,7 @@ function setChart(){
                 }
             },      
         })
-    }
+    }*/
 
 {% endblock %}
 </script>
