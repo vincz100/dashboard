@@ -25,6 +25,13 @@ $.ajax({
 })
 
 function setChart(){
+    /*Chart.defaults.global.elements.responsive = true;
+    Chart.defaults.global.elements.rectangle.borderWidth = 1;
+    Chart.defaults.global.elements.rectangle.backgroundColor = 'rgba(249, 213, 3, 0.2)';
+    Chart.defaults.global.elements.rectangle.borderColor = 'rgba(249, 213, 3, 1)';*/
+    Chart.defaults.global.defaultFontFamily = "Open Sans";
+    Chart.defaults.global.defaultFontSize = 12;
+
     var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
         type: 'line',
@@ -33,7 +40,7 @@ function setChart(){
             datasets: [{
                 label: "Nombre d'habitants",
                 data: defaultData,
-                backgroundColor: 'rgba(249, 213, 3, 1)',
+            backgroundColor: 'rgba(249, 213, 3, 1)',
             borderColor: 'rgba(249, 213, 3, 1)',
             pointHoverBackgroundColor: 'rgba(249, 213, 3, 1)',
             pointHoverBorderColor: 'rgba(249, 213, 3, 1)',
@@ -41,7 +48,13 @@ function setChart(){
             borderWidth: 1,
             fill: false
             }]
-        }
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Evolution de la population"
+            }
+        },
     })
 
     var ctx2 = document.getElementById("myChart2");
@@ -52,27 +65,31 @@ function setChart(){
                 datasets: [{
                     label: "Nombre d'habitants",
                     data: defaultData,
-                    backgroundColor: [
-                    'rgba(249, 213, 3, 0.2)',
-                    'rgba(249, 213, 3, 0.2)',
-                    'rgba(249, 213, 3, 0.2)',
-                    'rgba(249, 213, 3, 0.2)',
-                    'rgba(249, 213, 3, 0.2)',
-                    'rgba(249, 213, 3, 0.2)',
-                    'rgba(249, 213, 3, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(249, 213, 3, 1)',
-                    'rgba(249, 213, 3, 1)',
-                    'rgba(249, 213, 3, 1)',
-                    'rgba(249, 213, 3, 1)',
-                    'rgba(249, 213, 3, 1)',
-                    'rgba(249, 213, 3, 1)',
-                    'rgba(249, 213, 3, 1)'
-                ],
-                borderWidth: 1
+                backgroundColor: 'rgba(249, 213, 3, 1)',
+                borderColor: 'rgba(249, 213, 3, 1)',
                 }]
-            }
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Evolution de la population",
+                }
+            },
+            scales: {
+                xAxes: [{
+                    type: "time",
+                    /*time: {
+                        parser: 'YYYY',
+                        unit: 'year',
+                        displayFormats: {
+                            year: 'YYYY',
+                        },
+                    },*/
+                }],
+            },
+            /*ticks: {
+                  source: 'data',
+               },*/
         })
 
     var ctx3 = document.getElementById("myChart3");
@@ -103,7 +120,13 @@ function setChart(){
                 ],
                 borderWidth: 1
                 }]
-            }
+            },
+             options: {
+                title: {
+                    display: true,
+                    text: "Radar"
+                },
+            },
         })
 
     var ctx4 = document.getElementById("myChart4");
@@ -123,47 +146,48 @@ function setChart(){
                         'rgba(255, 159, 64, 1)'
                     ],
                 }]
-            }
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Pie Chart"
+                },
+            },
         })
+
     var ctx5 = document.getElementById("myChart5");
         var myChart = new Chart(ctx5, {
             type: 'bar',
-            options: {
-                    scales: {
-                        xAxes: [{
-                            stacked: true,
-                        }],
-                        yAxes: [{
-                            stacked: true,
-                        }]
-                    }
-                },
             data: {
                 labels: labels,
                 datasets: [{
                     label: "Solde migratoire",
                     data: soldemigratoire,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 99, 132, 1)'
-                    ]
+                    borderWidth: 1,
+                    borderColor: 'rgba(249, 213, 3, 1)',
+                    backgroundColor: 'rgba(249, 213, 3, 1)',
                 }, {
                     label: "Solde naturel",
                     data: soldenaturel, 
-                    backgroundColor: [
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(153, 102, 255, 1)'
-                    ]          
+                    borderWidth: 1,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',     
                 }], 
-            }      
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Dynamique démographique'
+                },
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                    }]
+                }
+            },      
         })
     }
 
