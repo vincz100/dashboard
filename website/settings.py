@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     # Local applications
     'dataviz',
     'rest_framework',
@@ -60,7 +61,6 @@ TEMPLATES = [
         'DIRS': [
             # Cette ligne ajoute le dossier templates/ à la racine du projet
             os.path.join(PROJECT_DIR,'templates'),
-            # os.path.join(PROJECT_DIR,'dataviz/'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'dataviz',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'postgres',
-        # 'HOST': 'localhost',
+        # 'NAME': 'CITADIA',
+        # 'USER': 'admin',
+        # 'PASSWORD': 'CITADIAdigital',
+        # 'HOST': 'citadia.c2l9xerfxhsl.eu-west-3.rds.amazonaws.com',
         # 'PORT': '5432',
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(PROJECT_DIR, 'db.sqlite3'),
@@ -132,8 +132,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_DIR, 'static'),
-)
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_DIR, "dataviz/static/dataviz")
+]
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'staticfiles')
+# print(STATICFILES_DIRS)
+
+# PROJECT_DIR
+# print(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'static'))
+print(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'dataviz/static'))

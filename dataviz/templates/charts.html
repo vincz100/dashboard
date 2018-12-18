@@ -3,7 +3,7 @@
 <script>
 {% block jquery %}
 var endpoint = 'api/chart/data/'
-var defaultData = []
+var defaultData = [];
 var labels = [];
 
 $.ajax({
@@ -14,6 +14,8 @@ $.ajax({
         defaultData = data.default
         soldemigratoire = data.soldmig
         soldenaturel = data.soldnat
+        compoMenages = data.compo_menages
+        evolpopan = data.evolpopan
         setChart()
 	    console.log(data)
         console.log(labels)
@@ -64,8 +66,8 @@ function setChart(){
             data: {
                 labels: labels,
                 datasets: [{
-                    label: "Nombre d'habitants",
-                    data: defaultData,
+                    label: "Evolution annuelle (%)",
+                    data: evolpopan,
                 backgroundColor: 'rgba(249, 213, 3, 1)',
                 borderColor: 'rgba(249, 213, 3, 1)',
                 }]
@@ -73,7 +75,7 @@ function setChart(){
             options: {
                 title: {
                     display: true,
-                    text: "Evolution de la population",
+                    text: "Evolution annuelle moyenne de la population",
                 },
                 scaleLabel: {
                     
@@ -120,7 +122,7 @@ function setChart(){
                 borderWidth: 1
                 }]
             },
-             options: {
+            options: {
                 title: {
                     display: true,
                     text: "Radar"
@@ -132,10 +134,10 @@ function setChart(){
         var myChart = new Chart(ctx4, {
             type: 'pie',
             data: {
-                labels: labels,
+                labels: ["Ménages 1 personne", "Ménages Autres sans famille", "Couple sans enfant", "Couple avec enfant(s)", "Famille monoparentale"],
                 datasets: [{
-                    label: "Nombre d'habitants",
-                    data: defaultData,
+                    label: "Composition des ménages",
+                    data: compoMenages,
                     backgroundColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
@@ -149,12 +151,12 @@ function setChart(){
             options: {
                 title: {
                     display: true,
-                    text: "Pie Chart"
+                    text: "Composition des ménages"
                 },
             },
         })
 
-    var ctx5 = document.getElementById("myChart5");
+    /*var ctx5 = document.getElementById("myChart5");
         var myChart = new Chart(ctx5, {
             type: 'bar',
             data: {
@@ -196,8 +198,8 @@ function setChart(){
                 }
             },      
         })
-    }
-    /*var ctx5 = document.getElementById("myChart5");
+    }*/
+    var ctx5 = document.getElementById("myChart5");
         var myChart = new Chart(ctx5, {
             type: 'bar',
             data: {
@@ -224,38 +226,47 @@ function setChart(){
                 scales: {
                     xAxes: [{
                         stacked: true,
+                        gridLines: {
+                            offsetGridLines: true,
+                            drawOnChartArea: true,
+                            drawTicks: false,
+                        },
                     }],
                     yAxes: [{
                         stacked: true,
+                        offsetGridLines: false,
+                        drawOnChartArea: false,
                     }]
                 }
             },      
         })
-    }*/
+    }
 
 {% endblock %}
 </script>
 
 {% block content %}
 
-<div class='row' >
-    <div class='col-sm-12' url-endpoint='{% url "api-data"%}'>
+<div class='rowtitle'>
+    <div class='col-12' url-endpoint='{% url "api-data"%}'>
         <h1> POPULATION </h1>
         <h3>Commune de {{ libgeo }} ({{ codgeo }})</h3>
-    </div>
-    <div class='col-sm-4'>
+</div>
+
+<div class='row'>
+    <div class='col-sm-6'>
 		<canvas id="myChart" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-4'>
+    <div class='col-sm-6'>
 		<canvas id="myChart2" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-4'>
+    <div class='col-sm-6'>
 		<canvas id="myChart3" width="400" height="400"></canvas>
     </div>
     <div class='col-sm-6'>
 		<canvas id="myChart4" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-6'>
+    <div class='col-sm-12'>
 		<canvas id="myChart5" width="400" height="400"></canvas>
     </div>
 </div>

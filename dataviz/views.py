@@ -15,7 +15,7 @@ from datetime import datetime
 import pygal
 
 # local Django
-from .models import Statistiques
+from .models import DataBase
 from .forms import HomeForm, LoginForm
 
 def home(request):
@@ -67,12 +67,12 @@ def board(request):
 		<h1>BOARD</h1>
 		""")
 
-class Population(View):
+class DataViz(View):
 
 	def get(self, request, *args, **kwargs):
 		filtre = request.session.get('filtre')
 		filtre = filtre["text"]
-		stats = Statistiques.objects.get(codgeo=filtre)
+		stats = DataBase.objects.get(codgeo=filtre)
 		data = {
 			"libgeo": stats.libgeo,
 			"codgeo" : stats.codgeo
@@ -80,7 +80,7 @@ class Population(View):
 		return render(request, 'charts.html', data)
 
 def get_data(request, *args, **kwargs):
-	data = (Statistiques.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop", "txevoansoldmig_6875", "txevoansoldmig_7582", "txevoansoldmig_8290", "txevoansoldmig_9099", "txevoansoldmig_9910", "txevoansoldmig_1015", "txevoansoldnat_6875", "txevoansoldnat_7582", "txevoansoldnat_8290", "txevoansoldnat_9099", "txevoansoldnat_9910", "txevoansoldnat_1015" )[0])
+	data = (DataBase.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop", "txevopopan_6875", "txevopopan_7582", "txevopopan_8290", "txevopopan_9099", "txevopopan_9910", "txevopopan_1015", "txevoansoldmig_6875", "txevoansoldmig_7582", "txevoansoldmig_8290", "txevoansoldmig_9099", "txevoansoldmig_9910", "txevoansoldmig_1015", "txevoansoldnat_6875", "txevoansoldnat_7582", "txevoansoldnat_8290", "txevoansoldnat_9099", "txevoansoldnat_9910", "txevoansoldnat_1015", "c10_txmenpseul", "c10_txmensfam", "c10_txmencoupsenf", "c10_txmencoupaenf", "c10_txmenfammono" )[0])
 	return JsonResponse(data)
 
 class ChartData(APIView):
@@ -90,11 +90,13 @@ class ChartData(APIView):
 	def get(self, request, format=None):
 		filtre = request.session.get('filtre')
 		filtre = filtre["text"]
-		stats = Statistiques.objects.get(codgeo=filtre)
+		stats = DataBase.objects.get(codgeo=filtre)
 		data = {
 			"territory": [stats.libgeo],
 			"labels": ["1968", "1975", "1982", "1990", "1999", "2010", "2015"],
 			"default": [stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop],
+			"evolpopan": [stats.txevopopan_6875, stats.txevopopan_7582, stats.txevopopan_8290, stats.txevopopan_9099, stats.txevopopan_9910, stats.txevopopan_1015],
+			"compo_menages":[stats.c10_txmenpseul, stats.c10_txmensfam, stats.c10_txmencoupsenf, stats.c10_txmencoupaenf, stats.c10_txmenfammono],
 			"soldmig":[stats.txevoansoldmig_6875, stats.txevoansoldmig_7582, stats.txevoansoldmig_8290, stats.txevoansoldmig_9099, stats.txevoansoldmig_9910, stats.txevoansoldmig_1015],
 			"soldnat":[stats.txevoansoldnat_6875, stats.txevoansoldnat_7582, stats.txevoansoldnat_8290, stats.txevoansoldnat_9099, stats.txevoansoldnat_9910, stats.txevoansoldnat_1015],
 		}
