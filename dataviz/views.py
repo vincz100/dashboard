@@ -67,7 +67,7 @@ def board(request):
 		<h1>BOARD</h1>
 		""")
 
-class DataViz(View):
+class UserChoice(View):
 
 	def get(self, request, *args, **kwargs):
 		filtre = request.session.get('filtre')

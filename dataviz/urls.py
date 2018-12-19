@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
 from . import views
-from dataviz.views import DataViz, ChartData, HomeView, LoginView
+from dataviz.views import UserChoice, ChartData, HomeView, LoginView
 
 urlpatterns = [
     
@@ -14,9 +14,9 @@ urlpatterns = [
 
     path('board', views.board, name='board'),
 
-    path('socio_demo/', DataViz.as_view(), name='socio-demo'),
+    path('socio_demo', UserChoice.as_view(), name='socio-demo'),
 
-    path('socio_demo/api/chart/data/', ChartData.as_view()),
+    path('api/chart/data', ChartData.as_view()),
 ]
 
 
