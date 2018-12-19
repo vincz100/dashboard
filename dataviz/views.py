@@ -43,21 +43,21 @@ class LoginView(TemplateView):
 			form: LoginForm()
 		return render(request, self.template_name, locals())
 		
-class HomeView(TemplateView):
+class TerritoryChoice(TemplateView):
 	template_name = "choice.html"
 
 	def get(self, request):
 		form = HomeForm()
 		return render(request, self.template_name, {"form": form})
 	
-	def post(self, request):
+	def post(self, request, userinput=None):
 		form = HomeForm(request.POST or None)
 		if form.is_valid():
-			text = form.cleaned_data['codgeo']
-			args = {"form": form, "text": text}
-			filtre = {"text": text}
+			userinput = form.cleaned_data['codgeo']
+			args = {"form": form, "userinput": userinput}
+			filtre = {"userinput": userinput}
 			request.session["filtre"] = filtre
-			return redirect('socio-demo')
+			return redirect('socio-demo', userinput)
 		else:
 			print('ERROR FORM INVALID')
 		return render(request, self.template_name, args)
@@ -71,7 +71,7 @@ class UserChoice(View):
 
 	def get(self, request, *args, **kwargs):
 		filtre = request.session.get('filtre')
-		filtre = filtre["text"]
+		filtre = filtre["userinput"]
 		stats = DataBase.objects.get(codgeo=filtre)
 		data = {
 			"libgeo": stats.libgeo,
@@ -85,7 +85,7 @@ class ChartData(APIView):
 
 	def get(self, request, format=None):
 		filtre = request.session.get('filtre')
-		filtre = filtre["text"]
+		filtre = filtre["userinput"]
 		stats = DataBase.objects.get(codgeo=filtre)
 		data = {
 			"territory": [stats.libgeo],
