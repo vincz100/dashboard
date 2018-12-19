@@ -79,10 +79,6 @@ class DataViz(View):
 		}
 		return render(request, 'charts.html', data)
 
-def get_data(request, *args, **kwargs):
-	data = (DataBase.objects.values("d68_pop", "d75_pop", "d82_pop", "d90_pop", "d99_pop", "p10_pop", "p15_pop", "txevopopan_6875", "txevopopan_7582", "txevopopan_8290", "txevopopan_9099", "txevopopan_9910", "txevopopan_1015", "txevoansoldmig_6875", "txevoansoldmig_7582", "txevoansoldmig_8290", "txevoansoldmig_9099", "txevoansoldmig_9910", "txevoansoldmig_1015", "txevoansoldnat_6875", "txevoansoldnat_7582", "txevoansoldnat_8290", "txevoansoldnat_9099", "txevoansoldnat_9910", "txevoansoldnat_1015", "c10_txmenpseul", "c10_txmensfam", "c10_txmencoupsenf", "c10_txmencoupaenf", "c10_txmenfammono" )[0])
-	return JsonResponse(data)
-
 class ChartData(APIView):
 	authentication_classes = []
 	permission_classes = []

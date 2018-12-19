@@ -226,6 +226,7 @@ function setChart(){
                 scales: {
                     xAxes: [{
                         stacked: true,
+                        display: false,
                         gridLines: {
                             offsetGridLines: true,
                             drawOnChartArea: true,
@@ -234,6 +235,7 @@ function setChart(){
                     }],
                     yAxes: [{
                         stacked: true,
+                        display: true,
                         offsetGridLines: false,
                         drawOnChartArea: false,
                     }]
@@ -243,12 +245,13 @@ function setChart(){
     }
 
 {% endblock %}
+
 </script>
 
 {% block content %}
 
 <div class='rowtitle'>
-    <div class='col-12' url-endpoint='{% url "api-data"%}'>
+    <div class='col-12'>
         <h1> POPULATION </h1>
         <h3>Commune de {{ libgeo }} ({{ codgeo }})</h3>
 </div>
