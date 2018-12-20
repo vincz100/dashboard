@@ -1,4 +1,4 @@
-#Standard library imports
+"""Standard library imports"""
 
 # Django imports
 from django.contrib.auth import get_user_model, authenticate, login
@@ -15,7 +15,7 @@ from datetime import datetime
 
 # local Django
 from .models import DataBase
-from .forms import HomeForm, LoginForm
+from .forms import TerritoryForm, LoginForm
 
 def home(request):
 	return render(request, 'home.html', {})
@@ -42,19 +42,20 @@ class LoginView(TemplateView):
 			form: LoginForm()
 		return render(request, self.template_name, locals())
 		
+
 class TerritoryChoice(TemplateView):
 	template_name = "choice.html"
 
 	def get(self, request):
-		form = HomeForm()
+		form = TerritoryForm()
 		return render(request, self.template_name, {"form": form})
 	
-	def post(self, request, userinput=None):
-		form = HomeForm(request.POST or None)
+	def post(self, request, user_input=None):
+		form = TerritoryForm(request.POST or None)
 		if form.is_valid():
-			userinput = form.cleaned_data['codgeo']
-			args = {"form": form, "userinput": userinput}
-			return redirect('socio-demo', userinput)
+			user_input = form.cleaned_data['territory']
+			args = {"form": form, "user_input": user_input}
+			return redirect('socio-demo', user_input)
 		else:
 			print('ERROR FORM INVALID')
 		return render(request, self.template_name, args)
@@ -64,24 +65,35 @@ def board(request):
 		<h1>BOARD</h1>
 		""")
 
-class UserChoice(View):
 
-	def get(self, request, userinput):
-		request.session["userinput"] = userinput
-		stats = DataBase.objects.get(codgeo=userinput)
+class ChartRender(View):
+	template_name = "charts.html"
+
+	def get(self, request, user_input):
+		request.session["user_input"] = user_input
+		stats = DataBase.objects.get(codgeo=user_input)
 		data = {
 			"libgeo": stats.libgeo,
 			"codgeo" : stats.codgeo
 		}
-		return render(request, 'charts.html', data)
+		return render(request, self.template_name, data)
+	
+	def post(self, request, user_input=None):
+		form = TerritoryForm(request.POST or None)
+		if form.is_valid():
+			user_input = form.cleaned_data['territory']
+			return (user_input)
+		else:
+			print('ERROR FORM INVALID')
 
-class ChartData(APIView):
+
+class APIPopulationView(APIView):
 	authentication_classes = []
 	permission_classes = []
 
 	def get(self, request, format=None):
-		userinput = request.session.get('userinput')
-		stats = DataBase.objects.get(codgeo=userinput)
+		user_input = request.session.get('user_input')
+		stats = DataBase.objects.get(codgeo=user_input)
 		data = {
 			"territory": [stats.libgeo],
 			"labels": ["1968", "1975", "1982", "1990", "1999", "2010", "2015"],
@@ -90,5 +102,37 @@ class ChartData(APIView):
 			"compo_menages":[stats.c10_txmenpseul, stats.c10_txmensfam, stats.c10_txmencoupsenf, stats.c10_txmencoupaenf, stats.c10_txmenfammono],
 			"soldmig":[stats.txevoansoldmig_6875, stats.txevoansoldmig_7582, stats.txevoansoldmig_8290, stats.txevoansoldmig_9099, stats.txevoansoldmig_9910, stats.txevoansoldmig_1015],
 			"soldnat":[stats.txevoansoldnat_6875, stats.txevoansoldnat_7582, stats.txevoansoldnat_8290, stats.txevoansoldnat_9099, stats.txevoansoldnat_9910, stats.txevoansoldnat_1015],
+		}
+		return Response(data)
+
+
+class APIMenagesView(APIView):
+	authentication_classes = []
+	permission_classes = []
+
+	def get(self, request, format=None):
+		user_input = request.session.get('user_input')
+		stats = DataBase.objects.get(codgeo=user_input)
+		data = {
+			"territory": [stats.libgeo],
+			"labels": ["1968", "1975", "1982", "1990", "1999", "2010", "2015"],
+			"default": [stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop],
+			"evolpopan": [stats.txevopopan_6875, stats.txevopopan_7582, stats.txevopopan_8290, stats.txevopopan_9099, stats.txevopopan_9910, stats.txevopopan_1015],
+			"compo_menages": [stats.c10_txmenpseul, stats.c10_txmensfam, stats.c10_txmencoupsenf, stats.c10_txmencoupaenf, stats.c10_txmenfammono],
+		}
+		return Response(data)
+
+
+class APIEconomieView(APIView):
+	authentication_classes = []
+	permission_classes = []
+
+	def get(self, request, format=None):
+		user_input = request.session.get('user_input')
+		stats = DataBase.objects.get(codgeo=user_input)
+		data = {
+			"territory": [stats.libgeo],
+			"labels": ["1968", "1975", "1982", "1990", "1999", "2010", "2015"],
+			"default": [stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop],
 		}
 		return Response(data)

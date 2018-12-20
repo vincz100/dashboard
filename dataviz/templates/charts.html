@@ -2,7 +2,7 @@
 
 <script>
 {% block jquery %}
-var endpoint = '/api/chart/data'
+var endpoint = '/api/population/data'
 var defaultData = []
 var labels = []
 
@@ -86,7 +86,6 @@ function setChart(){
                             offsetGridLines: true,
                             drawTicks: false,
                             drawOnChartArea: false,
-
                         }
                     }],
                 }
@@ -252,8 +251,9 @@ function setChart(){
 
 <div class='rowtitle'>
     <div class='col-12'>
-        <h1> POPULATION </h1>
+        <h1> DEMOGRAPHIE </h1>
         <h3>Commune de {{ libgeo }} ({{ codgeo }})</h3>
+    </div>
 </div>
 
 <div class='row'>

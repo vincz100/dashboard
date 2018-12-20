@@ -1,8 +1,10 @@
+"""URL Configuration"""
+
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
 from . import views
-from dataviz.views import UserChoice, ChartData, TerritoryChoice, LoginView
+from dataviz.views import APIPopulationView, APIEconomieView, APIMenagesView, LoginView, TerritoryChoice, ChartRender
 
 urlpatterns = [
     
@@ -14,10 +16,11 @@ urlpatterns = [
 
     path('board', views.board, name='board'),
 
-    path('socio_demo/<userinput>/', UserChoice.as_view(), name='socio-demo'),
+    path('socio_demo/<user_input>/', ChartRender.as_view(), name='socio-demo'),
 
-    path('api/chart/data', ChartData.as_view(), name='apiDemo'),
-
+    path('api/population/data', APIPopulationView.as_view()),
+    path('api/economie/data', APIEconomieView.as_view()),
+    path('api/menages/data', APIMenagesView.as_view()),
 ]
 
 
