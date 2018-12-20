@@ -12,7 +12,6 @@ from rest_framework.response import Response
 
 # third-party
 from datetime import datetime
-import pygal
 
 # local Django
 from .models import DataBase
@@ -55,8 +54,6 @@ class TerritoryChoice(TemplateView):
 		if form.is_valid():
 			userinput = form.cleaned_data['codgeo']
 			args = {"form": form, "userinput": userinput}
-			filtre = {"userinput": userinput}
-			request.session["filtre"] = filtre
 			return redirect('socio-demo', userinput)
 		else:
 			print('ERROR FORM INVALID')
@@ -69,10 +66,9 @@ def board(request):
 
 class UserChoice(View):
 
-	def get(self, request, *args, **kwargs):
-		filtre = request.session.get('filtre')
-		filtre = filtre["userinput"]
-		stats = DataBase.objects.get(codgeo=filtre)
+	def get(self, request, userinput):
+		request.session["userinput"] = userinput
+		stats = DataBase.objects.get(codgeo=userinput)
 		data = {
 			"libgeo": stats.libgeo,
 			"codgeo" : stats.codgeo
@@ -84,9 +80,8 @@ class ChartData(APIView):
 	permission_classes = []
 
 	def get(self, request, format=None):
-		filtre = request.session.get('filtre')
-		filtre = filtre["userinput"]
-		stats = DataBase.objects.get(codgeo=filtre)
+		userinput = request.session.get('userinput')
+		stats = DataBase.objects.get(codgeo=userinput)
 		data = {
 			"territory": [stats.libgeo],
 			"labels": ["1968", "1975", "1982", "1990", "1999", "2010", "2015"],

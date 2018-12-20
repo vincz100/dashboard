@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('socio_demo/<userinput>/', UserChoice.as_view(), name='socio-demo'),
 
-    path('api/chart/data', ChartData.as_view()),
+    path('api/chart/data', ChartData.as_view(), name='apiDemo'),
 
 ]
 
