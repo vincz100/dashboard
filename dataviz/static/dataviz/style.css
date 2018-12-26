@@ -1,7 +1,25 @@
-/* body {
-    background-color: blue !important;
-    margin-bottom: 50px;
-} */
+/*
+style.css
+---------
+
+*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color:rgb(250, 251, 254) !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+    font-size: medium;
+    text-align: justify;
+    color: rgb(108, 117, 125) !important;
+}
+
+.navbar {
+    box-shadow: 0 0 35px 0 #9aa1ab26 !important;
+}
 
 /* canvas[id*="myChart"] {
     padding: 10px;
@@ -11,4 +29,15 @@
     margin-bottom: 50px;
     margin-top: 50px;
     margin-left: 50px;
+} */
+
+*[class^="form"] {
+    /* background-color: blue; */
+    float: none;
+    margin: 0 auto;
+}
+/* *[class^="col-sm"] {
+    background-color: blue;
+    float: none;
+    margin: 0 auto;
 } */

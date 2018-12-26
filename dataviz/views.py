@@ -18,16 +18,16 @@ from .models import DataBase
 from .forms import TerritoryForm, LoginForm
 
 def home(request):
-	return render(request, 'home.html', {})
+	return render(request, "home.html", {})
 
 class LoginView(TemplateView):
 	template_name = "login.html"
 
-	def get(self, request):
+	def get(self, request): #render form lorsque l'on fait une requête get sur le serveur
 		form = LoginForm()
 		return render(request, self.template_name, {"form": form})
 	
-	def post(self, request):
+	def post(self, request): # post method pour envoyer de la data client ==> server  // get method pour récupérer de la data server ==> client (autre solution : API)
 		form = LoginForm(request.POST or None)
 		if form.is_valid():
 			username = form.cleaned_data["username"]
@@ -35,7 +35,7 @@ class LoginView(TemplateView):
 			user = authenticate(username=username, password=password)  # verif de données correctes avec la méthode authenticate(request, username=None, password=None). Renvoi soit un utilisateur authentifié, soit None
 			if user is not None :
 				login(request, user)
-				return redirect('choice')
+				return redirect("choice")
 			else:
 				error = True
 		else:
@@ -69,23 +69,37 @@ def board(request):
 class ChartRender(View):
 	template_name = "charts.html"
 
+	# def userform(self, request):
+	# 	form = LoginForm()
+	# 	return render(request, self.template_name, {"form": form})
+
 	def get(self, request, user_input):
+		form = TerritoryForm()
 		request.session["user_input"] = user_input
 		stats = DataBase.objects.get(codgeo=user_input)
 		data = {
 			"libgeo": stats.libgeo,
-			"codgeo" : stats.codgeo
+			"codgeo" : stats.codgeo,
+			"form": form
 		}
 		return render(request, self.template_name, data)
-	
-	def post(self, request, user_input=None):
+
+
+	def post(self, request, user_input):
 		form = TerritoryForm(request.POST or None)
 		if form.is_valid():
 			user_input = form.cleaned_data['territory']
-			return (user_input)
+			return redirect('socio-demo', user_input)
 		else:
 			print('ERROR FORM INVALID')
-
+	
+	# def post(self, request, user_input=None):
+	# 	form = TerritoryForm(request.POST or None)
+	# 	if form.is_valid():
+	# 		user_input = form.cleaned_data['territory']
+	# 		return (user_input)
+	# 	else:
+	# 		print('ERROR FORM INVALID')
 
 class APIPopulationView(APIView):
 	authentication_classes = []
