@@ -5,7 +5,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput)
 
 class TerritoryForm(forms.Form):
-    territory = forms.CharField(label="Territoire", max_length=30)
+    territory = forms.CharField(label="", max_length=30, widget=forms.TextInput(attrs={'id' : 'searchButton'}))
 
 class SearchTerritoryForm(forms.Form):
     scot = forms.CharField()
