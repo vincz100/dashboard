@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Local applications
     'dataviz',
     'rest_framework',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [
