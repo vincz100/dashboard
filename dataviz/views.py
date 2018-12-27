@@ -80,6 +80,8 @@ class ChartRender(View):
 		data = {
 			"libgeo": stats.libgeo,
 			"codgeo" : stats.codgeo,
+			"p15_pop" : stats.p15_pop,
+			"txevopopan_1015": stats.txevopopan_1015,
 			"form": form
 		}
 		return render(request, self.template_name, data)

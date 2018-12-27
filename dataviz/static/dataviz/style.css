@@ -47,7 +47,7 @@ nav .navbar-nav li a{
 /* CHART */
 /* ------------------------------------------------------------------ */
 
-canvas[id^="myChart"] {
+*[class^="myChart"] {
     background-color: white !important;
     padding: 25px;
     margin-bottom: 25px;
