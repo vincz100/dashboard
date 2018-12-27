@@ -48,15 +48,18 @@ function setChart(){
             pointHoverBorderColor: 'rgba(249, 213, 3, 1)',
             pointHoverRadius: 10,
             borderWidth: 1,
-            fill: false
+            fill: false,
             }]
         },
         options: {
             title: {
                 display: true,
                 text: "Evolution de la population"
+            },
+            legend: {
+                display: false
             }
-        },
+        }
     })
 
     var ctx2 = document.getElementById("myChart2");
@@ -66,7 +69,7 @@ function setChart(){
             data: {
                 labels: labels,
                 datasets: [{
-                    label: "Evolution annuelle (%)",
+                    /*label: "Evolution annuelle (%)",*/
                     data: evolpopan,
                 backgroundColor: 'rgba(249, 213, 3, 1)',
                 borderColor: 'rgba(249, 213, 3, 1)',
@@ -75,10 +78,10 @@ function setChart(){
             options: {
                 title: {
                     display: true,
-                    text: "Evolution annuelle moyenne de la population",
+                    text: "Evolution annuelle moyenne de la population (en %)",
                 },
-                scaleLabel: {
-                    
+                legend: {
+                    display: false
                 },
                 scales: {
                     xAxes: [{
@@ -87,9 +90,22 @@ function setChart(){
                             drawTicks: false,
                             drawOnChartArea: false,
                         }
-                    }],
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var label = data.datasets[tooltipItem.datasetIndex].label || '';
+        
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                            return label;
+                        }
+                    }
                 }
-            },
+            }
         })
 
     var ctx3 = document.getElementById("myChart3");
@@ -238,6 +254,19 @@ function setChart(){
                         offsetGridLines: false,
                         drawOnChartArea: false,
                     }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var label = data.datasets[tooltipItem.datasetIndex].label || '';
+        
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                            return label;
+                        }
+                    }
                 }
             },      
         })
@@ -257,20 +286,20 @@ function setChart(){
 </div>
 
 <div class='row'>
-    <div class='col-sm-6'>
-		<canvas id="myChart" width="400" height="400"></canvas>
+    <div class='col-md-6'>
+		<canvas class="myChart shadow-sm" id="myChart" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-6'>
-		<canvas id="myChart2" width="400" height="400"></canvas>
+    <div class='col-md-6'>
+		<canvas class="myChart shadow-sm" id="myChart2" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-6'>
-		<canvas id="myChart3" width="400" height="400"></canvas>
+    <div class='col-md-6'>
+		<canvas class="myChart shadow-sm" id="myChart3" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-6'>
-		<canvas id="myChart4" width="400" height="400"></canvas>
+    <div class='col-md-6'>
+		<canvas class="myChart shadow-sm" id="myChart4" width="400" height="400"></canvas>
     </div>
-    <div class='col-sm-12'>
-		<canvas id="myChart5" width="400" height="400"></canvas>
+    <div class='col-md-12'>
+		<canvas class="myChart shadow-sm" id="myChart5" width="400" height="400"></canvas>
     </div>
 </div>
 
