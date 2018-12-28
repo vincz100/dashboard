@@ -17,11 +17,18 @@
         <div class="col-md-12 d-flex flex-column">
           <form action="." method="post" class="form-inline my-2 my-lg-0" id="searchTerritory">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form.territory }}
             <button class="btn btn-outline-dark my-2 my-md-0" type="submit">Search</button>
           </form>
         </div>
       </div>
+
+    <div class='rowtitle'>
+        <div class='col-12 text-center'>
+            <h1> DEMOGRAPHIE </h1>
+            <h3>Commune de {{ libgeo }} ({{ codgeo }})</h3>
+        </div>
+    </div>
 
       {% block content %}
       {% endblock content %}

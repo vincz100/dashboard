@@ -82,6 +82,7 @@ class ChartRender(View):
 			"codgeo" : stats.codgeo,
 			"p15_pop" : stats.p15_pop,
 			"txevopopan_1015": stats.txevopopan_1015,
+			"p15_log" : stats.p15_log,
 			"form": form
 		}
 		return render(request, self.template_name, data)

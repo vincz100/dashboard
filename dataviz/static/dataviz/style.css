@@ -17,6 +17,15 @@ body {
     background-color:rgb(250, 251, 254) !important;
 }
 
+.row, .row > div[class*='col-'] {  
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 0 auto;
+}
+
 /* ------------------------------------------------------------------ */
 /* HEADER */
 /* ------------------------------------------------------------------ */
@@ -36,7 +45,7 @@ nav .navbar-nav li a{
 }
 
 #searchButton {
-    margin: 25px;
+    margin: 5px;
 }
 
 .rowtitle{
@@ -55,4 +64,19 @@ nav .navbar-nav li a{
     margin-right: 25px;
 }
 
+h3 {
+    font-size: small !important;
+}
 
+/* ------------------------------------------------------------------ */
+/* ICONS */
+/* ------------------------------------------------------------------ */
+
+/*Rules for sizing the icon*/
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+}

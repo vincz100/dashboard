@@ -279,37 +279,67 @@ function setChart(){
 
 {% block content %}
 
-<div class='rowtitle'>
-    <div class='col-12'>
-        <h1> DEMOGRAPHIE </h1>
-        <h3>Commune de {{ libgeo }} ({{ codgeo }})</h3>
+<div class='row'>
+    <div class='col-md-6 order-2'>
+		<canvas class="myChart shadow-sm" id="myChart" width="400" height="400"></canvas>
+    </div>
+    <div class='col-md-6 order-6'>
+		<canvas class="myChart shadow-sm" id="myChart2" width="400" height="400"></canvas>
+    </div>
+    <div class='col-md-6 order-5'>
+		<canvas class="myChart shadow-sm" id="myChart3" width="400" height="400"></canvas>
+    </div>
+    <div class='col-md-6 order-4'>
+		<canvas class="myChart shadow-sm" id="myChart4" width="400" height="400"></canvas>
+    </div>
+    <div class='col-md-6 order-3'>
+        <canvas class='myChart shadow-sm' id='myChart5' width='400' height='400'></canvas>
+    </div>    
+    <div class='col-md-6 order-1'>
+        <div class='myChart col-md-12 shadow-sm' width='400' height='400'>
+            <div class='card bg-light m-3'>
+                <div class='card-body'>
+                    <h1 class='card-title'>
+                        <i class='material-icons align-middle mr-3 md-48'>people</i>
+                        {{p15_pop}} 
+                        <h3>habitants permanents</h3>
+                    </h1>
+                </div>
+            </div>
+            <div class='card bg-light m-3'>
+                <div class='card-body'>
+                    <h1 class='card-title'>
+                        {% if txevopopan_1015|floatformat:1 >= '0' %}
+                            <i class='material-icons align-middle mr-3 md-48' style='color: #a7bd3e'>trending_up</i>
+                            {{txevopopan_1015|floatformat:1}} % 
+                            <h3>solde démographique positif</h3>
+                        {% else %}
+                            <i class='material-icons align-middle mr-3 md-48'style='color: #b40000'>trending_down</i>
+                            {{txevopopan_1015|floatformat:1}} %  
+                            <h3>solde démographique négatif</h3>
+                        {% endif %}
+                    </h1>
+                </div>
+            </div>   
+            <div class='card bg-light m-3'>
+                <div class='card-body'>
+                    <h1 class='card-title'>
+                        <i class='material-icons align-middle mr-3 md-48'>home</i>
+                        {{p15_log}} 
+                        <h3>logements</h3>
+                    </h1>
+                </div>
+            </div>   
+        </div>
     </div>
 </div>
 
-<div class='row'>
+<!-- <div class='row'>
     <div class='col-md-6'>
-		<canvas class="myChart shadow-sm" id="myChart" width="540" height="540"></canvas>
-    </div>
-    <div class='col-md-6'>
-		<canvas class="myChart shadow-sm" id="myChart2" width="540" height="540"></canvas>
-    </div>
-</div>
-
-<div class='row'>
-    <div class='col-md-6'>
-		<canvas class="myChart shadow-sm" id="myChart3" width="540" height="540"></canvas>
-    </div>
-    <div class='col-md-6'>
-		<canvas class="myChart shadow-sm" id="myChart4" width="540" height="540"></canvas>
-    </div>
-</div>
-
-<div class='row'>
-    <div class='col-md-6'>
-        <canvas class='myChart shadow-sm' id='myChart5' width='540' height='540'></canvas>
+        <canvas class='myChart shadow-sm' id='myChart5' width='400' height='400'></canvas>
     </div>    
     <div class='col-md-6'>
-        <div class='myChart col-md-12 shadow-sm' width='540' height='540'>
+        <div class='myChart col-md-12 shadow-sm' width='400' height='400'>
             <div class='card bg-light mb-3'>
                 <div class='card-body'>
                     <h1 class='card-title'>
@@ -328,6 +358,6 @@ function setChart(){
             </div>   
         </div>
     </div>
-</div>
+</div> -->
 
 {% endblock content %}
