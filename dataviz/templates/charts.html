@@ -297,7 +297,7 @@ function setChart(){
     </div>    
     <div class='col-md-6 order-1'>
         <div class='myChart col-md-12 shadow-sm' width='400' height='400'>
-            <div class='card bg-light m-3'>
+            <!-- <div class='card bg-light m-3'>
                 <div class='card-body'>
                     <h1 class='card-title'>
                         <i class='material-icons align-middle mr-3 md-48'>people</i>
@@ -305,27 +305,36 @@ function setChart(){
                         <h3>habitants permanents</h3>
                     </h1>
                 </div>
-            </div>
-            <div class='card bg-light m-3'>
-                <div class='card-body'>
-                    <h1 class='card-title'>
+            </div> -->
+            
+            <div>
+                <div class='card bg-light m-3'>
+                    <div class="card-header bg-light"><i class='material-icons align-middle mr-3 md-24'>people</i>POPULATION</div>
+                    <div class='card-body'>
                         {% if txevopopan_1015|floatformat:1 >= '0' %}
-                            <i class='material-icons align-middle mr-3 md-48' style='color: #a7bd3e'>trending_up</i>
-                            {{txevopopan_1015|floatformat:1}} % 
-                            <h3>solde démographique positif</h3>
+                            <h1 class="card-title" style='color: #a7bd3e'> {{p15_pop}} habitants</h1>
+                            <p class="card-text">
+                                <i class='material-icons align-middle mr-3 md-24' style='color: #a7bd3e'>trending_up</i>
+                                {{txevopopan_1015|floatformat:1}} % depuis 2010
+                            </p>
                         {% else %}
-                            <i class='material-icons align-middle mr-3 md-48'style='color: #b40000'>trending_down</i>
-                            {{txevopopan_1015|floatformat:1}} %  
-                            <h3>solde démographique négatif</h3>
+                            <h1 class="card-title" style='color: #b40000'> {{p15_pop}} habitants</h1>
+                            <p class="card-text">
+                                <i class='material-icons align-middle mr-3 md-24' style='color: #b40000'>trending_down</i>
+                                {{txevopopan_1015|floatformat:1}} % depuis 2010
+                            </p> 
                         {% endif %}
-                    </h1>
+                    </div>
+                    <div class="card-footer bg-light text-right">
+                        <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
+                    </div>
                 </div>
-            </div>   
+               
             <div class='card bg-light m-3'>
                 <div class='card-body'>
                     <h1 class='card-title'>
                         <i class='material-icons align-middle mr-3 md-48'>home</i>
-                        {{p15_log}} 
+                        {{p15_log|floatformat:0}} 
                         <h3>logements</h3>
                     </h1>
                 </div>
