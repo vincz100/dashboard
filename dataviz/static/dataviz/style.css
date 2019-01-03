@@ -68,6 +68,10 @@ h3 {
     font-size: small !important;
 }
 
+.card-header {
+    background-color: white !important;
+}
+
 .card-text {
     font-style: italic;
 }
@@ -81,6 +85,12 @@ h3 {
 /* ------------------------------------------------------------------ */
 
 /*Rules for sizing the icon*/
+
+/* .material-icons {
+    vertical-align: middle;
+    display: inline-block;
+    float: none; 
+} */
 
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }

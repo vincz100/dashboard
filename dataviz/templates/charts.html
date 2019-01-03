@@ -16,6 +16,7 @@ $.ajax({
         soldenaturel = data.soldnat
         compoMenages = data.compo_menages
         evolpopan = data.evolpopan
+        tailmmen_15 = data.tailmmen_15
         setChart()
 	    console.log(data)
         console.log(labels)
@@ -296,41 +297,59 @@ function setChart(){
         <canvas class='myChart shadow-sm' id='myChart5' width='400' height='400'></canvas>
     </div>    
     <div class='col-md-6 order-1'>
-        <div class='myChart col-md-12 shadow-sm' width='400' height='400'>
-            <!-- <div class='card bg-light m-3'>
-                <div class='card-body'>
-                    <h1 class='card-title'>
-                        <i class='material-icons align-middle mr-3 md-48'>people</i>
-                        {{p15_pop}} 
-                        <h3>habitants permanents</h3>
-                    </h1>
-                </div>
-            </div> -->
-            
-            <div>
-                <div class='card bg-light m-3'>
-                    <div class="card-header bg-light"><i class='material-icons align-middle mr-3 md-24'>people</i>POPULATION</div>
-                    <div class='card-body'>
-                        {% if txevopopan_1015|floatformat:1 >= '0' %}
-                            <h1 class="card-title" style='color: #a7bd3e'> {{p15_pop}} habitants</h1>
-                            <p class="card-text">
-                                <i class='material-icons align-middle mr-3 md-24' style='color: #a7bd3e'>trending_up</i>
-                                {{txevopopan_1015|floatformat:1}} % depuis 2010
-                            </p>
-                        {% else %}
-                            <h1 class="card-title" style='color: #b40000'> {{p15_pop}} habitants</h1>
-                            <p class="card-text">
-                                <i class='material-icons align-middle mr-3 md-24' style='color: #b40000'>trending_down</i>
-                                {{txevopopan_1015|floatformat:1}} % depuis 2010
-                            </p> 
-                        {% endif %}
+        <div class='myChart d-flex flex-column justify-content-around col-md-12 shadow-sm' width='400' height='400'>
+            <!-- Carte POPULATION -->
+            <div class='card border-light shadow-sm m-3'>
+                <div class="card-header text-center pb-0 pt-0">
+                    <div class="d-flex align-items-center">POPULATION
+                        <a class="btn-action share-toggle ml-auto indigo waves-effect waves-light"><i class='material-icons md-36'>people</i></a>
                     </div>
-                    <div class="card-footer bg-light text-right">
+                </div>
+                <div class='card-body'>
+                    {% if txevopopan_1015|floatformat:1 >= '0' %}
+                        <div class='d-flex align-items-center' style='color: #a7bd3e'>
+                            <h1 class="card-title"> {{p15_pop}}</h1> 
+                            <h2 class="ml-2">habitants</h2>
+                        </div>
+                        <p class="card-subtitle">
+                            <i class='material-icons align-middle mr-3 md-24' style='color: #a7bd3e'>trending_up</i>
+                            {{txevopopan_1015|floatformat:1}} % depuis 2010
+                        </p>
+                    {% else %}
+                        <div class='d-flex align-items-center' style='color: #b40000'>
+                            <h1 class="card-title"> {{p15_pop}}</h1> 
+                            <h2 class="ml-2">habitants</h2>
+                        </div>
+                        <p class="card-subtitle">
+                            <i class='material-icons align-middle mr-3 md-24' style='color: #b40000'>trending_down</i>
+                            {{txevopopan_1015|floatformat:1}} % depuis 2010
+                        </p> 
+                    {% endif %}
+                </div>
+                <div class="card-footer border-light text-right pb-0 pt-0">
+                    <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
+                </div>
+            </div>
+            
+            <!-- Carte MENAGES -->
+            <div class='card border-light shadow-sm m-3'>
+                    <div class="card-header text-center pb-0 pt-0">
+                        <div class="d-flex align-items-center">PERSONNES PAR MENAGE
+                            <a class="btn-action share-toggle ml-auto indigo waves-effect waves-light"><i class='material-icons md-36'>face</i></a>
+                        </div>
+                    </div>
+                    <div class='card-body'>
+                        <h1 class="card-title">{{tailmmen_15|floatformat:1}}</h1>
+                        <!-- <p class="card-subtitle">
+                            personnes par ménage
+                        </p>  -->
+                    </div>
+                    <div class="card-footer border-light text-right pb-0 pt-0">
                         <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
                     </div>
                 </div>
-               
-            <div class='card bg-light m-3'>
+
+            <!-- <div class='card bg-light m-3'>
                 <div class='card-body'>
                     <h1 class='card-title'>
                         <i class='material-icons align-middle mr-3 md-48'>home</i>
@@ -338,7 +357,7 @@ function setChart(){
                         <h3>logements</h3>
                     </h1>
                 </div>
-            </div>   
+            </div> --> 
         </div>
     </div>
 </div>

@@ -82,6 +82,7 @@ class ChartRender(View):
 			"codgeo" : stats.codgeo,
 			"p15_pop" : stats.p15_pop,
 			"txevopopan_1015": stats.txevopopan_1015,
+			"tailmmen_15" : stats.tailmmen_15,
 			"p15_log" : stats.p15_log,
 			"form": form
 		}
