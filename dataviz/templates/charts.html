@@ -33,7 +33,7 @@ function setChart(){
     Chart.defaults.global.elements.rectangle.backgroundColor = 'rgba(249, 213, 3, 0.2)';
     Chart.defaults.global.elements.rectangle.borderColor = 'rgba(249, 213, 3, 1)';*/
     /*Chart.defaults.global.defaultFontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";*/
-    Chart.defaults.global.defaultFontSize = 12;
+    Chart.defaults.global.defaultFontSize = 10;
     Chart.defaults.global.defaultFontColor = "rgb(108, 117, 125)";
 
     var ctx = document.getElementById("myChart");
@@ -54,12 +54,27 @@ function setChart(){
             }]
         },
         options: {
-            title: {
+            responsive: true,
+            /*title: {
                 display: true,
                 text: "Evolution de la population"
-            },
+            },*/
             legend: {
                 display: false
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        offsetGridLines: false,
+                        drawOnChartArea: false,
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        offsetGridLines: false,
+                        drawOnChartArea: false,
+                    }
+                }]
             }
         }
     })
@@ -78,6 +93,7 @@ function setChart(){
                 }]
             },
             options: {
+                responsive: true,
                 title: {
                     display: true,
                     text: "Evolution annuelle moyenne de la population (en %)",
@@ -140,6 +156,7 @@ function setChart(){
                 }]
             },
             options: {
+                responsive: true,
                 title: {
                     display: true,
                     text: "Radar"
@@ -166,6 +183,7 @@ function setChart(){
                 }]
             },
             options: {
+                responsive: true,
                 title: {
                     display: true,
                     text: "Composition des ménages"
@@ -201,6 +219,7 @@ function setChart(){
                 }],
             },
             options: {
+                responsive: false,
                 title: {
                     display: true,
                     text: 'Dynamique démographique'
@@ -236,6 +255,7 @@ function setChart(){
                 }], 
             },
             options: {
+                responsive: true,
                 title: {
                     display: true,
                     text: 'Dynamique démographique'
@@ -274,93 +294,100 @@ function setChart(){
         })
     }
 
+
 {% endblock %}
 
 </script>
 
 {% block content %}
 
-<div class='row'>
-    <div class='col-md-6 order-2'>
-		<canvas class="myChart shadow-sm" id="myChart" width="400" height="400"></canvas>
-    </div>
-    <div class='col-md-6 order-6'>
-		<canvas class="myChart shadow-sm" id="myChart2" width="400" height="400"></canvas>
-    </div>
-    <div class='col-md-6 order-5'>
-		<canvas class="myChart shadow-sm" id="myChart3" width="400" height="400"></canvas>
-    </div>
-    <div class='col-md-6 order-4'>
-		<canvas class="myChart shadow-sm" id="myChart4" width="400" height="400"></canvas>
-    </div>
-    <div class='col-md-6 order-3'>
-        <canvas class='myChart shadow-sm' id='myChart5' width='400' height='400'></canvas>
-    </div>    
-    <div class='col-md-6 order-1'>
-        <div class='myChart d-flex flex-column justify-content-around col-md-12 shadow-sm' width='400' height='400'>
-            <!-- Carte POPULATION -->
-            <div class='card border-light shadow-sm m-3'>
-                <div class="card-header text-center pb-0 pt-0">
-                    <div class="d-flex align-items-center">POPULATION
-                        <a class="btn-action share-toggle ml-auto indigo waves-effect waves-light"><i class='material-icons md-36'>people</i></a>
-                    </div>
-                </div>
-                <div class='card-body'>
-                    {% if txevopopan_1015|floatformat:1 >= '0' %}
-                        <div class='d-flex align-items-center' style='color: #a7bd3e'>
-                            <h1 class="card-title"> {{p15_pop}}</h1> 
-                            <h2 class="ml-2">habitants</h2>
-                        </div>
-                        <p class="card-subtitle">
-                            <i class='material-icons align-middle mr-3 md-24' style='color: #a7bd3e'>trending_up</i>
-                            {{txevopopan_1015|floatformat:1}} % depuis 2010
-                        </p>
-                    {% else %}
-                        <div class='d-flex align-items-center' style='color: #b40000'>
-                            <h1 class="card-title"> {{p15_pop}}</h1> 
-                            <h2 class="ml-2">habitants</h2>
-                        </div>
-                        <p class="card-subtitle">
-                            <i class='material-icons align-middle mr-3 md-24' style='color: #b40000'>trending_down</i>
-                            {{txevopopan_1015|floatformat:1}} % depuis 2010
-                        </p> 
-                    {% endif %}
-                </div>
-                <div class="card-footer border-light text-right pb-0 pt-0">
-                    <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
-                </div>
+<div class="card-deck">  
+    <div class='card border-light shadow-sm'>
+        <div class="card-header">
+            <div class="d-flex align-items-center">POPULATION
+                <a class="btn-action share-toggle ml-auto indigo waves-effect waves-light"><i class='material-icons md-36'>people</i></a>
             </div>
-            
-            <!-- Carte MENAGES -->
-            <div class='card border-light shadow-sm m-3'>
-                    <div class="card-header text-center pb-0 pt-0">
-                        <div class="d-flex align-items-center">PERSONNES PAR MENAGE
-                            <a class="btn-action share-toggle ml-auto indigo waves-effect waves-light"><i class='material-icons md-36'>face</i></a>
-                        </div>
-                    </div>
-                    <div class='card-body'>
-                        <h1 class="card-title">{{tailmmen_15|floatformat:1}}</h1>
-                        <!-- <p class="card-subtitle">
-                            personnes par ménage
-                        </p>  -->
-                    </div>
-                    <div class="card-footer border-light text-right pb-0 pt-0">
-                        <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
-                    </div>
+        </div>
+        <div class='card-body'>
+            {% if txevopopan_1015|floatformat:1 >= '0' %}
+                <div class='d-flex align-items-center' style='color: #a7bd3e'>
+                    <h1 class="card-title"> {{p15_pop}}</h1> 
+                    <h2 class="ml-2">habitants</h2>
                 </div>
+                <p class="card-subtitle">
+                    <i class='material-icons align-middle mr-3 md-24' style='color: #a7bd3e'>trending_up</i>
+                    {{txevopopan_1015|floatformat:1}} % depuis 2010
+                </p>
+            {% else %}
+                <div class='d-flex align-items-center' style='color: #b40000'>
+                    <h1 class="card-title"> {{p15_pop}}</h1> 
+                    <h2 class="ml-2">habitants</h2>
+                </div>
+                <p class="card-subtitle">
+                    <i class='material-icons align-middle mr-3 md-24' style='color: #b40000'>trending_down</i>
+                    {{txevopopan_1015|floatformat:1}} % depuis 2010
+                </p> 
+            {% endif %}
+        </div>
+        <div class="card-footer border-light text-right pb-0 pt-0">
+            <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
+        </div>
+    </div> <!-- Carte POPULATION -->
+    <div class='card border-light shadow-sm'>
+        <div class="card-header">
+            <div class="d-flex align-items-center">PERSONNES PAR MENAGE
+                <a class="btn-action share-toggle ml-auto indigo waves-effect waves-light"><i class='material-icons md-36'>face</i></a>
+            </div>
+        </div>
+        <div class='card-body'>
+            <h1 class="card-title">{{tailmmen_15|floatformat:1}}</h1>
+            <p class="card-subtitle">
+                moyenne d'une commune française : 2.23
+            </p> 
+        </div>
+        <div class="card-footer border-light text-right pb-0 pt-0">
+            <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
+        </div>
+    </div> <!-- Carte MENAGES -->
+</div>
 
-            <!-- <div class='card bg-light m-3'>
-                <div class='card-body'>
-                    <h1 class='card-title'>
-                        <i class='material-icons align-middle mr-3 md-48'>home</i>
-                        {{p15_log|floatformat:0}} 
-                        <h3>logements</h3>
-                    </h1>
-                </div>
-            </div> --> 
+<div class="card-deck">
+    <div class='col-lg-6 order-2 d-flex flex-column justify-content-between card p-0 border-light shadow-sm'>
+        <div class="card-header">EVOLUTION DE LA POPULATION</div>
+        <div class="card-body">
+            <canvas class="myChart" id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class="card-footer border-light text-right pb-0 pt-0">
+                <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
+        </div>
+    </div>
+    <div class='col-lg-6 order-2 d-flex flex-column justify-content-between card p-0 border-light shadow-sm'>
+        <div class="card-header">EVOLUTION DE LA POPULATION</div>
+        <div class="card-body">
+            <canvas class="myChart" id="myChart2" width="400" height="400"></canvas>
+        </div>
+        <div class="card-footer border-light text-right pb-0 pt-0">
+                <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
         </div>
     </div>
 </div>
+
+<div class="card-deck">
+    <div class='col-lg-6 order-3'>
+            <canvas class='myChart shadow-sm' id='myChart5' width='400' height='400'></canvas>
+    </div> 
+</div> 
+
+<div class="card-deck">
+    <div class='col-lg-6 order-5'>
+		<canvas class="myChart shadow-sm" id="myChart3" width="400" height="400"></canvas>
+    </div>
+    <div class='col-lg-6 order-4'>
+		<canvas class="myChart shadow-sm" id="myChart4" width="400" height="400"></canvas>
+    </div>
+</div>
+
+
 
 <!-- <div class='row'>
     <div class='col-md-6'>
