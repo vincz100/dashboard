@@ -21,19 +21,19 @@
             <button class="btn btn-outline-dark my-2 my-md-0" type="submit">Search</button>
           </form>
         </div>
-      </div>
+      </div> <!-- form-row -->
 
     <div class='rowtitle'>
         <div class='col-12 text-center'>
             <h1> DEMOGRAPHIE </h1>
             <h2>Commune de {{ libgeo }} ({{ codgeo }})</h2>
         </div>
-    </div>
+    </div> <!-- rowtitle -->
 
-      {% block content %}
-      {% endblock content %}
+    {% block content %}
+    {% endblock content %}
 
-    </div>
+    </div><!-- container -->
     {% include 'js.html' %}
     <script>
     $(document).ready(function(){ /*fait appel à la fonction dès que la page html est chargé */

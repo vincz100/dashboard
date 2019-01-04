@@ -94,10 +94,10 @@ function setChart(){
             },
             options: {
                 responsive: true,
-                title: {
+                /*title: {
                     display: true,
                     text: "Evolution annuelle moyenne de la population (en %)",
-                },
+                },*/
                 legend: {
                     display: false
                 },
@@ -105,7 +105,7 @@ function setChart(){
                     xAxes: [{
                         gridLines: {
                             offsetGridLines: true,
-                            drawTicks: false,
+                            drawTicks: true,
                             drawOnChartArea: false,
                         }
                     }]
@@ -158,7 +158,7 @@ function setChart(){
             options: {
                 responsive: true,
                 title: {
-                    display: true,
+                    display: false,
                     text: "Radar"
                 },
             },
@@ -185,7 +185,7 @@ function setChart(){
             options: {
                 responsive: true,
                 title: {
-                    display: true,
+                    display: false,
                     text: "Composition des ménages"
                 },
             },
@@ -256,10 +256,10 @@ function setChart(){
             },
             options: {
                 responsive: true,
-                title: {
+                /*title: {
                     display: true,
                     text: 'Dynamique démographique'
-                },
+                },*/
                 scales: {
                     xAxes: [{
                         stacked: true,
@@ -333,6 +333,7 @@ function setChart(){
             <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
         </div>
     </div> <!-- Carte POPULATION -->
+    <div class="w-100 d-none d-sm-block d-md-none"></div> <!-- WRAP -->
     <div class='card border-light shadow-sm'>
         <div class="card-header">
             <div class="d-flex align-items-center">PERSONNES PAR MENAGE
@@ -349,43 +350,60 @@ function setChart(){
             <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
         </div>
     </div> <!-- Carte MENAGES -->
-</div>
+</div> <!-- card-deck -->
 
 <div class="card-deck">
-    <div class='col-lg-6 order-2 d-flex flex-column justify-content-between card p-0 border-light shadow-sm'>
+    <div class='col-lg-4 card p-0 border-light shadow-sm'>
         <div class="card-header">EVOLUTION DE LA POPULATION</div>
         <div class="card-body">
             <canvas class="myChart" id="myChart" width="400" height="400"></canvas>
         </div>
         <div class="card-footer border-light text-right pb-0 pt-0">
-                <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
+                <small class="text-muted">Source : RP2015</small>
         </div>
     </div>
-    <div class='col-lg-6 order-2 d-flex flex-column justify-content-between card p-0 border-light shadow-sm'>
-        <div class="card-header">EVOLUTION DE LA POPULATION</div>
+    <div class="w-100 d-none d-sm-block d-md-none"></div> <!-- WRAP -->
+    <div class='col-lg-4 d-flex flex-column card p-0 border-light shadow-sm'>
+        <div class="card-header">DYNAMIQUE DEMOGRAPHIQUE</div>
         <div class="card-body">
             <canvas class="myChart" id="myChart2" width="400" height="400"></canvas>
         </div>
         <div class="card-footer border-light text-right pb-0 pt-0">
-                <small class="text-muted" style='color: #b40000'>Source : RP2015</small>
+            <small class="text-muted">Source : RP2015</small>
         </div>
     </div>
-</div>
-
-<div class="card-deck">
-    <div class='col-lg-6 order-3'>
-            <canvas class='myChart shadow-sm' id='myChart5' width='400' height='400'></canvas>
+    <div class="w-100 d-none d-sm-block d-md-none"></div> <!-- WRAP -->
+    <div class="w-100 d-none d-md-block d-lg-none"></div> <!-- WRAP -->
+    <div class='col-lg-4 d-flex flex-column card p-0 border-light shadow-sm'>
+        <div class="card-header">COMPOSITION DES MENAGES</div>
+        <div class="card-body">
+            <canvas class="myChart" id="myChart5" width="400" height="400"></canvas>
+        </div>
+        <div class="card-footer border-light text-right pb-0 pt-0">
+            <small class="text-muted">Source : RP2015</small>
+        </div> 
     </div> 
-</div> 
+</div> <!-- card-deck -->
 
 <div class="card-deck">
-    <div class='col-lg-6 order-5'>
-		<canvas class="myChart shadow-sm" id="myChart3" width="400" height="400"></canvas>
+    <div class='col-lg-6 card p-0 border-light shadow-sm'>
+        <div class="card-header">RADAR</div>
+        <div class="card-body">
+            <canvas class="myChart" id="myChart3" width="400" height="400"></canvas>
+        </div>
+        <div class="card-footer border-light text-right pb-0 pt-0">
+                <small class="text-muted">Source : RP2015</small>
+        </div> 
     </div>
-    <div class='col-lg-6 order-4'>
-		<canvas class="myChart shadow-sm" id="myChart4" width="400" height="400"></canvas>
+    <div class="w-100 d-none d-sm-block d-md-none"></div> <!-- WRAP -->
+    <div class='col-lg-6 card p-0 border-light shadow-sm'>
+        <div class="card-header">COMPOSITION DES MENAGES</div>
+        <canvas class="myChart" id="myChart4" width="400" height="400"></canvas>
+    <div class="card-footer border-light text-right pb-0 pt-0">
+        <small class="text-muted">Source : RP2015</small>
     </div>
-</div>
+    </div>
+</div> <!-- card-deck -->
 
 
 

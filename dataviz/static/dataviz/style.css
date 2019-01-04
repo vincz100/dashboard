@@ -17,7 +17,7 @@ body {
     background-color:rgb(250, 251, 254) !important;
 }
 
-.row, .row > div[class*='col-'] {  
+/* .row, .row > div[class*='col-'] {  
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -25,7 +25,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex:1 0 auto;
-}
+} */
 
 /* ------------------------------------------------------------------ */
 /* HEADER */
