@@ -44,7 +44,7 @@ function setChart(){
             datasets: [{
                 label: "Nombre d'habitants",
                 data: defaultData,
-            backgroundColor: 'rgba(249, 213, 3, 1)',
+            /*backgroundColor: 'rgba(249, 213, 3, 1)',*/
             borderColor: 'rgba(249, 213, 3, 1)',
             pointHoverBackgroundColor: 'rgba(249, 213, 3, 1)',
             pointHoverBorderColor: 'rgba(249, 213, 3, 1)',
@@ -272,9 +272,9 @@ function setChart(){
                     }],
                     yAxes: [{
                         stacked: true,
-                        display: true,
-                        offsetGridLines: false,
-                        drawOnChartArea: false,
+                        display: false,
+                        offsetGridLines: true,
+                        drawOnChartArea: true,
                     }]
                 },
                 tooltips: {
@@ -364,7 +364,7 @@ function setChart(){
     </div>
     <div class="w-100 d-none d-sm-block d-md-none"></div> <!-- WRAP -->
     <div class='col-lg-4 d-flex flex-column card p-0 border-light shadow-sm'>
-        <div class="card-header">DYNAMIQUE DEMOGRAPHIQUE</div>
+        <div class="card-header">POPULATION</div>
         <div class="card-body">
             <canvas class="myChart" id="myChart2" width="400" height="400"></canvas>
         </div>
@@ -375,7 +375,7 @@ function setChart(){
     <div class="w-100 d-none d-sm-block d-md-none"></div> <!-- WRAP -->
     <div class="w-100 d-none d-md-block d-lg-none"></div> <!-- WRAP -->
     <div class='col-lg-4 d-flex flex-column card p-0 border-light shadow-sm'>
-        <div class="card-header">COMPOSITION DES MENAGES</div>
+        <div class="card-header">DYNAMIQUE DEMOGRAPHIQUE</div>
         <div class="card-body">
             <canvas class="myChart" id="myChart5" width="400" height="400"></canvas>
         </div>
