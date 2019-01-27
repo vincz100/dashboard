@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\ferra\\Anaconda3\\envs\\dev\\python.exe",
+    "python.pythonPath": "C:\\Users\\ferra\\AppData\\Local\\conda\\conda\\envs\\dev\\python.exe",
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true
 
