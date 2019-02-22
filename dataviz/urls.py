@@ -16,13 +16,13 @@ urlpatterns = [
 
     path('board', views.board, name='board'),
 
-    path('socio_demo/<user_input>/', ChartRender.as_view(), name='socio-demo'),
+    path('socio_demo/<codgeo>/', ChartRender.as_view(), name='socio-demo'),
 
-    path('api/population/data', APIPopulationView.as_view()),
+    path('api/population/data/<str:codgeo>', APIPopulationView.as_view()),
     path('api/economie/data', APIEconomieView.as_view()),
     path('api/menages/data', APIMenagesView.as_view()),
     path('api/menages/data/<str:codgeo>', GetDetailAPIMenagesView.as_view()),
-    path('api/menages/data/<user_input>', APIMenagesView.as_view()),
+    # path('api/menages/data/<user_input>', APIMenagesView.as_view()),
 ]
 
 

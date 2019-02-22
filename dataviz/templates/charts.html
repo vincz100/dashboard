@@ -2,15 +2,14 @@
 
 <script>
 {% block jquery %}
-var endpoint = '/api/population/data'
+var endpoint = '/api/population/data/39038'
 var defaultData = []
-var labels = []
+var labels = ["1968", "1975", "1982", "1990", "1999", "2010", "2015"]
 
 $.ajax({
 	method:"GET",
 	url: endpoint,
 	success: function(data){
-        labels = data.labels
         defaultData = data.default
         soldemigratoire = data.soldmig
         soldenaturel = data.soldnat
