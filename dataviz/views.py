@@ -103,13 +103,19 @@ class ChartRender(View):
             print('ERROR FORM INVALID')
 
 
-class APIPopulationView(APIView):
+class APIPopulationView(ListAPIView):
+    queryset = DataBase.objects.all()
+    serializer_class = DataBaseSerializer
+
+
+class GetDetailAPIPopulationView(APIView):
     authentication_classes = []
     permission_classes = []
 
-    def get(self, request, codgeo, format=None):
+    def get(self, request, codgeo=None, format=None):
         stats = DataBase.objects.get(codgeo=codgeo)
         data = {
+            "codgeo": [stats.codgeo],
             "territory": [stats.libgeo],
             "default": [stats.d68_pop, stats.d75_pop, stats.d82_pop, stats.d90_pop, stats.d99_pop, stats.p10_pop, stats.p15_pop],
             "evolpopan": [stats.txevopopan_6875, stats.txevopopan_7582, stats.txevopopan_8290, stats.txevopopan_9099, stats.txevopopan_9910, stats.txevopopan_1015],
