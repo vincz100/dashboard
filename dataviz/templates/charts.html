@@ -7,9 +7,9 @@ var defaultData = []
 var labels = ["1968", "1975", "1982", "1990", "1999", "2010", "2015"]
 
 $.ajax({
-	method:"GET",
-	url: endpoint,
-	success: function(data){
+  method:"GET",
+  url: endpoint,
+  success: function(data){
         defaultData = data.default
         soldemigratoire = data.soldmig
         soldenaturel = data.soldnat
@@ -17,13 +17,14 @@ $.ajax({
         evolpopan = data.evolpopan
         tailmmen_15 = data.tailmmen_15
         setChart()
-	    console.log(data)
+        console.log(data)
         console.log(labels)
-	},
-	error: function(error_data){
-		console.log("error")
-		console.log(error_data)
-	}
+        console.log(endpoint)
+  },
+  error: function(error_data){
+    console.log("error")
+    console.log(error_data)
+  }
 })
 
 function setChart(){
