@@ -92,8 +92,6 @@ class ChartRender(View):
         }
         return render(request, self.template_name, data)
 
-
-
     def post(self, request, codgeo):
         form = TerritoryForm(request.POST or None)
         if form.is_valid():
@@ -103,7 +101,7 @@ class ChartRender(View):
             print('ERROR FORM INVALID')
 
 
-class APIPopulationView(ListAPIView):
+class APICommunesView(ListAPIView):
     queryset = DataBase.objects.all()
     serializer_class = DataBaseSerializer
 

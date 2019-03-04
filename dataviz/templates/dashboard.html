@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
+
     <title>dataviz</title>
 
     {% include 'css.html' %}
     {% include 'bootstrap_defaults.html' %}
+
   </head>
   <body>
 
@@ -37,12 +38,12 @@
     {% include 'js.html' %}
     <script>
     $(document).ready(function(){ /*fait appel à la fonction dès que la page html est chargé */
-      
+
     {% block jquery %}
     {% endblock %}
-    
+
     });
-    
+
     </script>
   </body>
 </html>
