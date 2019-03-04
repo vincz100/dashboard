@@ -17,7 +17,7 @@ body {
     background-color:rgb(250, 251, 254) !important;
 }
 
-/* .row, .row > div[class*='col-'] {  
+/* .row, .row > div[class*='col-'] {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -96,12 +96,10 @@ h3 {
 /* .material-icons {
     vertical-align: middle;
     display: inline-block;
-    float: none; 
+    float: none;
 } */
 
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
-
-}

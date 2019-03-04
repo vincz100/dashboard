@@ -5,7 +5,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
 from . import views
-from dataviz.views import APICommunesView, GetDetailAPIPopulationView, GetDetailAPIMenagesView, LoginView, TerritoryChoice, ChartRender
+from dashboard.views import APICommunesView, GetDetailAPIPopulationView, GetDetailAPIMenagesView, LoginView, TerritoryChoice, ChartRender
 
 urlpatterns = [
 #
@@ -25,6 +25,3 @@ urlpatterns = [
     path('api/menages/data/<codgeo>/', GetDetailAPIMenagesView.as_view()),
     # path('api/menages/data/<user_input>', APIMenagesView.as_view()),
 ]
-
-
-

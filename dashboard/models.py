@@ -474,18 +474,16 @@ class DataBase(models.Model):
     c10_txpop15p_cs5 = models.FloatField(blank=True, null=True)
     c10_txpop15p_cs6 = models.FloatField(blank=True, null=True)
     c10_txpop15p_cs7 = models.FloatField(blank=True, null=True)
-    c10_txpop15p_cs8 = models.FloatField(blank=True, null=True) 
+    c10_txpop15p_cs8 = models.FloatField(blank=True, null=True)
 
     class Meta:
         verbose_name="statistiques communale"
         ordering = ["codgeo"]
 
     def __str__(self):
-        """ 
+        """
         Cette méthode que nous définirons dans tous les modèles
-        nous permettra de reconnaître facilement les différents objets que 
+        nous permettra de reconnaître facilement les différents objets que
         nous traiterons plus tard dans l'administration
         """
         return self.libgeo
-
-

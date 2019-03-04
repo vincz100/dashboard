@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     # Local applications
-    'dataviz',
+    'dashboard',
+    'ged',
+    'news',
     'rest_framework',
     'django_tables2',
 ]
@@ -134,7 +136,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "dataviz/static/dataviz")
+    os.path.join(PROJECT_DIR, "dashboard/static/dashboard")
 ]
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'staticfiles')
@@ -142,4 +144,4 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'staticfiles')
 
 # PROJECT_DIR
 # print(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'static'))
-print(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'dataviz/static'))
+print(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'dashboard/static'))
