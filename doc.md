@@ -51,37 +51,39 @@ User
 
 ## Définition des urls
 
-`/` page home = présentation du produit, fonctionnalités...
+`/` page d'accueil = présentation du produit, fonctionnalités...
 
 - Bouton se connecter
 - formulaire POST de demande d'infos (l'utilisateur envoie son nom + prénom + adresse mail)
 
-`login/`
+`login/` page de connexion utilisateur
+
+- formulaire POST de connexion (id + mdp)- lien "j'ai oublié mon mot de passe"
+
 `recover/`
 
-- formulaire POST de connexion (id + mdp)
-- lien "j'ai oublié mon mot de passe"
+`logout/` bouton se déconnecter
 
-`logout/`
+- profile
+  - `profile`
 
-- bouton se déconnecter
+`front/<lib_projet>/` page sur laquelle on retrouve les apps de l'utilisateur (gestion du scope)
 
-`home/`
-
-- page sur laquelle on retrouve les apps de l'utilisateur (gestion du scope) :
-
-`home/<app>/`
+`front/<lib_projet>/<app>/`
 
 - le home de chaque app donne accès aux différents panel (gestion du scope) :
-  - `home/agenda/` : calendrier du projet (timeline, planning)
-  - `home/news/` : dernieres actualités sous forme de caroussel
-  - `home/dashboard/` : thématiques avec 1 ou 2 indicateurs clé
-  - `home/project/` : cartes animées (story map)
-  - `home/map/` : webmapping
-  - `home/concertation/` : formulaire, contribution
-  - `home/documents/` : banque de documents où chaque utilisateur peut télécharger et/ou déposer des docs
+  - `front/<lib_projet>/agenda/` : calendrier du projet (timeline, planning)
+  - `front/<lib_projet>/news/` : dernieres actualités sous forme de caroussel
+  - `front/<lib_projet>/dashboard/` : thématiques avec 1 ou 2 indicateurs clé
+  - `front/<lib_projet>/project/` : cartes animées (story map)
+  - `front/<lib_projet>/map/` : webmapping
+  - `front/<lib_projet>/concertation/` : formulaire, contribution
+  - `front/<lib_projet>/documents/` : banque de documents où chaque utilisateur peut télécharger et/ou déposer des docs
 
-### Shell
+- admin
+  - `admin/<lib_projet>/`
+
+## Shell
 
 `from dataviz.models import DataBase`
 `DataBase.objects.filter(codgeo='39058')`
@@ -92,8 +94,6 @@ User
 `print(el.codgeo)`
 
 ## Nouvelle app
-
-
 
 ## Django REST Framework
 
@@ -117,4 +117,3 @@ On utilise ces vues lorsque l'on a pas besoin de customiser l'API.
 
 - read-only endpoints afin de représenter une seule collection de modèle
 - `lookup_field = 'nom_du_champ'`
-
