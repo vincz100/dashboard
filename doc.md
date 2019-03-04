@@ -93,7 +93,40 @@ User
 `for el in DataBase.objects.all():`
 `print(el.codgeo)`
 
-## Nouvelle app
+## News
+
+### Nouvelle app
+
+`python manage.py startapp news`
+
+news/
+    __init__.py
+    admin.py
+    apps.py
+    migrations/
+        __init__.py
+    models.py
+    tests.py
+    views.py
+
+
+### Modèle
+
+`python manage.py makemigrations polls` En exécutant makemigrations, vous indiquez à Django que vous avez effectué des changements à vos modèles (dans ce cas, vous en avez créé) et que vous aimeriez que ces changements soient stockés sous forme de migration. Les migrations sont le moyen utilisé par Django pour stocker les modifications de vos modèles (et donc de votre schéma de base de données), ce ne sont que des fichiers sur le disque. Vous pouvez consultez la migration pour vos nouveaux modèles si vous le voulez ; il s’agit du fichier polls/migrations/0001_initial.py. 
+
+### Vues
+
+Une vue est un exécutable acceptant une requête et renvoyant une réponse. Ce n’est pas forcément une simple fonction et Django fournit des exemples de classes qui peuvent être utilisées comme des vues. Celles-ci vous permettent de structurer vos vues et de réutiliser du code en exploitant l’héritage et les « mixins ». 
+
+Une vue basée sur une classe est déployée dans un motif d’URL en utilisant la méthode de classe as_view()
+
+```
+urlpatterns = [
+    path('view/', MyView.as_view(size=42)),
+]
+
+```
+
 
 ## Django REST Framework
 
