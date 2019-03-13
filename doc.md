@@ -112,11 +112,18 @@ news/
 
 ### Modèle
 
-`python manage.py makemigrations polls` En exécutant makemigrations, vous indiquez à Django que vous avez effectué des changements à vos modèles (dans ce cas, vous en avez créé) et que vous aimeriez que ces changements soient stockés sous forme de migration. Les migrations sont le moyen utilisé par Django pour stocker les modifications de vos modèles (et donc de votre schéma de base de données), ce ne sont que des fichiers sur le disque. Vous pouvez consultez la migration pour vos nouveaux modèles si vous le voulez ; il s’agit du fichier polls/migrations/0001_initial.py. 
+`python manage.py createsuperuser`
+
+`python manage.py migrate`
+
+`python manage.py makemigrations news` En exécutant makemigrations, vous indiquez à Django que vous avez effectué des changements à vos modèles (dans ce cas, vous en avez créé) et que vous aimeriez que ces changements soient stockés sous forme de migration. Les migrations sont le moyen utilisé par Django pour stocker les modifications de vos modèles (et donc de votre schéma de base de données), ce ne sont que des fichiers sur le disque. Vous pouvez consultez la migration pour vos nouveaux modèles si vous le voulez ; il s’agit du fichier polls/migrations/0001_initial.py.
+
+Par défaut, Django ajoute à chaque modèle le champ suivant :
+`id = models.AutoField(primary_key=True)`
 
 ### Vues
 
-Une vue est un exécutable acceptant une requête et renvoyant une réponse. Ce n’est pas forcément une simple fonction et Django fournit des exemples de classes qui peuvent être utilisées comme des vues. Celles-ci vous permettent de structurer vos vues et de réutiliser du code en exploitant l’héritage et les « mixins ». 
+Une vue est un exécutable acceptant une requête et renvoyant une réponse. Ce n’est pas forcément une simple fonction et Django fournit des exemples de classes qui peuvent être utilisées comme des vues. Celles-ci vous permettent de structurer vos vues et de réutiliser du code en exploitant l’héritage et les « mixins ».
 
 Une vue basée sur une classe est déployée dans un motif d’URL en utilisant la méthode de classe as_view()
 
