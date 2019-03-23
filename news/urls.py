@@ -1,8 +1,11 @@
 from . import views
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls import url
+from django.contrib.auth import views as auth_views
 
-from news.views import NewsPage
+from . import views
+from news.views import ArticlesPage
 
 urlpatterns = [
-    path('front/<lib_projet>/news/', NewsPage.as_view()),
+    path('front/articles/', ArticlesPage.as_view()),
 ]

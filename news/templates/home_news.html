@@ -1,0 +1,15 @@
+{% extends 'bootstrap_defaults.html' %}
+
+{% block content %}
+
+<div>
+<h1> test {{ articles }} </h1>
+</div>
+
+<div>
+  {% for object in context %}
+    <h1>{{object.title}}</h1>
+  {% endfor %}
+</div>
+
+{% endblock content %}

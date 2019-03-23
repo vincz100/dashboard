@@ -3,9 +3,14 @@ from django.shortcuts import render
 
 from django.views.generic import TemplateView
 
+from news.models import Article, Category, CategoryToPost
 
-class NewsPage(TemplateView):
-    template_name = "home.html"
+class ArticlesPage(TemplateView):
+    template_name = "home_news.html"
 
-    def news_list(self, parameter_list):
-        pass
+    def article_list(self, parameter_list):
+        queryset = Article.objects.all().order_by('publication_date')[0:5]
+        context = {
+            'articles': queryset
+        }
+        return render(request, self.template_name, context)

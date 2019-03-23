@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Category, Post, Comment
+from .models import Category, Article, Comment
 
-class PostModelAdmin(admin.ModelAdmin):
-    list_display = ("title", "post_date", "modification_date")
+class ArticleModelAdmin(admin.ModelAdmin):
+    list_display = ("title", "publication_date", "modification_date")
     list_display_links = ["modification_date"]
     list_filter = ["title", "modification_date"]
     list_editable = ["title"]
@@ -10,6 +10,6 @@ class PostModelAdmin(admin.ModelAdmin):
     search_fields = ["title", "author", "modification_date"]
     prepopulated_fields = {"slug": ("title", "author")}
     class Meta:
-        model = Post
+        model = Article
 
-admin.site.register(Post, PostModelAdmin)
+admin.site.register(Article, ArticleModelAdmin)

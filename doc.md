@@ -33,9 +33,13 @@ Les news du projet (cf libe)
 - liste des actualités sous forme de vignette
 - Focus 2 sur les 5 news les plus consultés
 
-### Dashboard
+## settings.py
 
-###
+Modifier `TIME_ZONE = 'Europe/Paris'`
+
+## Tests
+
+
 
 ## Modèles
 
