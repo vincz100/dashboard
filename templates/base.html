@@ -1,14 +1,15 @@
-{% load static %}
 <!DOCTYPE html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
-  {% include 'css.html' %}
-</head>
+<html>
+
+  {% include 'head.html' %}
+
   <body>
-    <nav class="navbar navbar-expand-lg shadow-sm navbar-white bg-white">
+    {% include 'header.html' %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% comment %} <nav class="navbar navbar-expand-lg shadow-sm navbar-white bg-white">
       <a class="navbar-brand" href="#">
         <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
       </a>
@@ -30,7 +31,10 @@
             {% endblock content %}
           </div>
         </div>
-      </div>
-    {% include 'js.html' %}
+      </div> {% endcomment %}
+
+      {% include 'footer.html' %}
+      {% include 'js.html' %}
+
   </body>
 </html>
