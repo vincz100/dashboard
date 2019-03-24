@@ -3,10 +3,6 @@
 {% block content %}
 
 <div>
-  <h1> {{ articles }} </h1>
-</div>
-
-<div>
   <ul>
     {% for article in articles %}
       <li>{{ article.title }}</li>
@@ -14,4 +10,4 @@
   </ul>
 </div>
 
-{% endblock content %}
+{% endblock %}
