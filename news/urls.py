@@ -4,10 +4,9 @@ from django.contrib.auth import views as auth_views
 
 
 from . import views
-from news.views import index, ArticlesPage, test
+from news.views import index, article_list
 
 urlpatterns = [
     path('front/', index),
-    path('front/test/', test),
-    path('front/articles/', ArticlesPage.as_view())
+    path('front/articles/', article_list)
 ]
