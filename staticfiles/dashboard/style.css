@@ -1,0 +1,105 @@
+/* ------------------------------------------------------------------ */
+/* DEFAULT STYLE */
+/* ------------------------------------------------------------------ */
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    font-size: small;
+    font-weight: 300;
+    text-align: justify;
+    color: rgb(108, 117, 125) !important;
+    background-color:rgb(250, 251, 254) !important;
+}
+
+/* .row, .row > div[class*='col-'] {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    flex:1 0 auto;
+} */
+
+/* ------------------------------------------------------------------ */
+/* HEADER */
+/* ------------------------------------------------------------------ */
+
+.navbar {
+    /* box-shadow: 0 0 35px 0 #9aa1ab26 !important; */
+}
+
+nav .navbar-nav li a {
+    color: rgb(108, 117, 125) !important;
+    }
+
+*[class^="form"] {
+    /* background-color: blue; */
+    float: none;
+    margin: 0 auto;
+}
+
+#searchButton {
+    margin: 5px;
+}
+
+.rowtitle{
+    padding: 25px;
+}
+
+/* ------------------------------------------------------------------ */
+/* CHART */
+/* ------------------------------------------------------------------ */
+
+/* *[class^="myChart"] {
+    background-color: white !important;
+    padding: 25px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+} */
+
+h3 {
+    font-size: small !important;
+}
+
+.card{
+    margin-bottom: 25px !important;
+    border:0 !important;
+    /* width: 500px; */
+}
+
+.card-header {
+    background-color: white !important;
+}
+
+.card-text {
+    font-style: italic;
+}
+
+.text-muted {
+    color: rgb(201, 0, 0) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* ICONS */
+/* ------------------------------------------------------------------ */
+
+/*Rules for sizing the icon*/
+
+/* .material-icons {
+    vertical-align: middle;
+    display: inline-block;
+    float: none;
+} */
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }

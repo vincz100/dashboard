@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
-from news.models import Article, Category, CategoryToPost
+from news.models import Article, Category
 
 def index(request):
     return render(request, 'index.html', {})
@@ -29,4 +29,7 @@ def index(request):
 def article_list(request):
     queryset = Article.objects.order_by('publication_date')[:5]
     context = {"articles": queryset}
-    return render(request, "home_news.html", context)
+    return render(request, "blog.html", context)
+
+def article_detail(request):
+    queryset = Article.objects.get()

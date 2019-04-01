@@ -15,7 +15,9 @@ class Category(models.Model):
     """
     A blog category.
     """
-    title = models.CharField(max_length=200)
+
+
+    title = models.IntegerField()
     slug = models.SlugField(unique=True)
     description = models.TextField()
 
@@ -38,9 +40,16 @@ class Article(models.Model):
         (STATUS_ONLINE, 'Online'),
     )
 
+    TITLE_DEFAULT = 0
+    TITLE_CHOICES = (
+        (0, 'Diagnostic'),
+        (1, 'PADD'),
+        (2, 'Concertation'),
+    )
+
     title = models.CharField(max_length=200)
     article_content = models.CharField(max_length=200, null=True)
-    categories = models.ManyToManyField(Category, blank=True, through='CategoryToPost')
+    categories = models.ForeignKey(Category, choices=TITLE_CHOICES, default=TITLE_DEFAULT, on_delete=models.CASCADE)
     text = models.TextField()
     slug = models.SlugField('slug', max_length=255, unique_for_date='publication_date')
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -67,6 +76,6 @@ class Comment(models.Model):
     pass
 
 
-class CategoryToPost(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+# class CategoryToPost(models.Model):
+#     article = models.ForeignKey(Article, on_delete=models.CASCADE, null=True)
+#     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
